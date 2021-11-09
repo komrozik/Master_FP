@@ -1,0 +1,9 @@
+#Multimodenbetrieb
+#Resonatorlänge L=82cm
+#Peak   MHz     dBm
+1       184     -16.8
+2       368     -18
+3       551     -20
+4       731     -21
+5       915     -30
+6       1099    -40

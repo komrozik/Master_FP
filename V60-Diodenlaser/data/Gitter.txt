@@ -1,0 +1,7 @@
+#Gitter-Experiment
+#Gitter     Schrim z G.     Max zu Nachmax      Max zu Max
+#Linien/mm  cm              cm                  cm
+1200        31.25           36.3                74.2
+100         31.25           4                   12.5        29.4
+600         31.25           26.1                75.8
+80          31.25           3.5                 10          20.3
