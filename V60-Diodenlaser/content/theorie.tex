@@ -22,6 +22,8 @@ To relax from the second level $E_2$ to the ground state $E_1$ the electrons can
 This stimulated emission is the main source for the photons of the laser.
 The simulated emission and the spontaneous emission are shown in figure \ref{fig:emission}.
 
+Speckle Pattern \cite{speckle}
+
 \begin{figure}
     \center
     \includegraphics[width=0.8\textwidth]{bilder/emission.jpg}
@@ -29,6 +31,50 @@ The simulated emission and the spontaneous emission are shown in figure \ref{fig
     \label{fig:emission}
 \end{figure}
 
+\subsection{Doted semiconductors}
+\label{sec:doting}
+To change the electrical properties of semiconductors the doting of the semiconductor is a widely used method.
+Doting is the process of introducing atoms of another material with more (n-doted) or less (p-doted) valence electrons than the atoms of the semiconductor.
+In p-doted semiconductors holes are the majority of the charge carriers and in n-doted semiconductors electrons are the majority of the charge carriers.
+By doting the semiconductor the Fermi-energy inside the material is changed \ref{fig:doting} and another Energylevel is introduced.
+
+\begin{figure}
+    \centering
+    \begin{subfigure}{0.49\textwidth}
+        \includegraphics[width = \textwidth]{bilder/n_Donatorschema_demtroeder.png}
+        \caption{n-doted}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.49\textwidth}
+        \includegraphics[width = \textwidth]{bilder/p_Donatorschema_demtroeder.png}
+        \caption{p-doted}
+    \end{subfigure}
+    \caption{donator band structures \cite{demtroeder}}
+    \label{fig:doting}
+\end{figure}
+
 \subsection{Diode}
 In this experiment a pn-junction diode is used.
-A pn-junction diode is a part of a electrical 
+A pn-junction diode is a part of a electrical circuit.
+The diode has a positive and negative direction and only allows the current to pass the diode in the positive direction.
+A pn-junction consists of two semiconductors (one p doted and another n doted \ref{sec:doting}) which are combined to build the junction at the border.
+\cite{laser_diode}
+
+\subsection{Gain Curves}
+\begin{figure}
+    \center
+    \includegraphics[width=0.8\textwidth]{bilder/Gain_curve.png}
+    \caption{Gain Curve \cite{anleitung}}
+    \label{fig:gain}
+\end{figure}
+\subsubsection*{Medium Gain}
+The medium band gap dictates the energy and therefore the frequency/wavelength of the photons.
+The medium gain curve is very broad for the temperature region in the experiment (which is chosen for the \SI{780}{\nano \metre} of the rubidium resonance).
+\subsubsection*{Internal Cavity}
+The internal cavity is the standing wave due to the reflection inside the medium.
+This kind of laser is called 'Fabry-Perot-Laser-Diode' but for a material like GaAs a additional set of mirrors is not necessary because on the border of the medium to air a reflection of \num{0.32} is reached.
+Due to the standing wave the frequency of the laser is dependent on the length of the active medium. 
+\subsubsection*{Grating Feedback}
+The grating feedback gets explained by DAVIDOFF (Kap 10.5.3 \cite{eichler_laser})
+\subsubsection*{External Cavity}
+The external Cavity is the standing wave between the medium and the grating. (Kap 10.5.3 \cite{eichler_laser})
