@@ -29,7 +29,7 @@ By hitting the surface, each illuminated point acts as a source for a new spheri
 \begin{figure}[ht]
     \center
     \includegraphics[width=0.8\textwidth]{bilder/emission.jpg}
-    \caption{Absorption and emission in the active medium are shown for a two state system. \cite{anleitungHeNe}}
+    \caption{The absorption and emission processes in the active medium are shown for a two state system. \cite{anleitungHeNe}}
     \label{fig:emission}
 \end{figure}
 
@@ -51,7 +51,7 @@ By doting the semiconductor the Fermi-energy inside the material is changed \ref
         \includegraphics[width = \textwidth]{bilder/p_Donatorschema_demtroeder.png}
         \caption{p-doted}
     \end{subfigure}
-    \caption{donator band structures \cite{demtroeder}}
+    \caption{The Band structures with the fermi energy and the donator and acceptor states sre shown for p- and n-doted materials \cite{demtroeder}}
     \label{fig:doting}
 \end{figure}
 
@@ -60,32 +60,42 @@ In this experiment a pn-junction diode is used.
 A pn-junction diode is a part of a electrical circuit.
 The diode has a positive and negative direction and only allows the current to pass the diode in the positive direction.
 A pn-junction consists of two semiconductors (one p doted and another n doted \ref{sec:doting}) which are combined to build the junction at the border.
-By applying
+By applying a current to the diode, the holes and the electrons meet in junction region and recombine.
+During the recombination the laser photons get emitted and due to the internal reflection stimulated emission occurs in the medium.
+Because the Diode produces a laser which is strongly diverging and has a big frequency width  a external optical setup is used (seen in figure \ref{fig:assembly2} and more deeply explained in section \ref{sec:grating}).
+With an lens the diverging laser is transformed in a parallel light and then pointed onto a grid surface.
 \cite{laser_diode}
 
 \subsection{Gain Curves}
+\label{sec:gain}
 \begin{figure}
     \center
     \includegraphics[width=0.8\textwidth]{bilder/Gain_curve.png}
-    \caption{Gain Curve \cite{anleitung}}
+    \caption{The different parts of the Gain Curves of the DIode laser are shown separately. By adjusting the different parts the wanted frequency can be reached \cite{anleitung}}
     \label{fig:gain}
 \end{figure}
-\subsubsection*{Medium Gain}
+\subsubsection{Medium Gain}
 The medium band gap dictates the energy and therefore the frequency/wavelength of the photons.
 The medium gain curve is very broad for the temperature region in the experiment (which is chosen for the \SI{780}{\nano \metre} of the rubidium resonance).
-\subsubsection*{Internal Cavity}
+\subsubsection{Internal Cavity}
 The internal cavity is the standing wave due to the reflection inside the medium.
 This kind of laser is called 'Fabry-Perot-Laser-Diode' but for a material like GaAs a additional set of mirrors is not necessary because on the border of the medium to air a reflection of \num{0.32} is reached.
 Due to the standing wave the frequency of the laser is dependent on the length of the active medium. 
-\subsubsection*{Grating Feedback}
-The grating feedback gets explained by DAVIDOFF (Kap 10.5.3 \cite{eichler_laser})
-\subsubsection*{External Cavity}
-The external Cavity is the standing wave between the medium and the grating. (Kap 10.5.3 \cite{eichler_laser})
-
+\subsubsection{Grating Feedback and external cavity}
+\label{sec:grating}
+To determine the frequency emitted by the laser instead of the internal cavity, also a external resonator is used.
+To get a frequency selection a optical grating is placed in front of the laser with a lens between the diode and the grating.
+The grating is assembled in a way to reflect the first order of reflection travels back into the diode.
+The frequency of the laser light is then dependent on the angle of the grating and can be varied by turning the Grating.
+This assembly of a laser feedback is called a Littrow Laser(Kap 10.5.3 \cite{eichler_laser}).
 \subsection{Rubidium}
+Rubidium has two stable isotopes, $^{85}Rb$ and $^{87}Rb$.
+In figure \ref{fig:rubidium} the energy states of the isotopes and the relaxation paths are shown.
+The relaxations (denoted by a and b) can be associated to the different signals of the transmission spectrum of rubidium.
+\cite{rubidium}
 \begin{figure}
     \center
     \includegraphics[width=0.8\textwidth]{bilder/Rubidium_Energy.png}
-    \caption{Rubidium \cite{anleitung}}
+    \caption{On the left side the energy levels of $^{85}Rb$ and $^{87}Rb$ are shown. On the right side the corresponding transmission spectrum of rubidium at wavelength near \SI{780}{\nano \metre} is shown. \cite{anleitung}}
     \label{fig:rubidium}
 \end{figure}
