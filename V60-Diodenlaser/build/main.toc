@@ -35,7 +35,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {3.2}Rubidium fluorescence}{9}{subsection.3.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.3}Absorption spectrum of Rubidium}{9}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.3}Absorption spectrum of Rubidium}{10}{subsection.3.3}%
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {4}Conclusion and discussion}{11}{section.4}%
 \defcounter {refsection}{0}\relax 

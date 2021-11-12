@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.13.2 (TeX Live 2021)  (format=lualatex 2021.10.23)  12 NOV 2021 06:02
+This is LuaHBTeX, Version 1.13.2 (TeX Live 2021)  (format=lualatex 2021.10.23)  12 NOV 2021 06:14
  restricted system commands enabled.
 **main.tex
 (./main.tex
@@ -1448,50 +1448,49 @@ File: bilder/Assembly_3.png Graphic file (type png)
 Package luatex.def Info: bilder/Assembly_3.png  used on input line 53.
 (luatex.def)             Requested size: 334.60571pt x 135.08856pt.
 ) (./content/auswertung.tex [8<./bilder/Assembly_2.png><./bilder/Assembly_3.png>]
-<bilder/laser_before.jpg, id=152, 836.12375pt x 1015.795pt>
+<bilder/laser_before.jpg, id=154, 836.12375pt x 1015.795pt>
 File: bilder/laser_before.jpg Graphic file (type jpg)
 <use bilder/laser_before.jpg>
-Package luatex.def Info: bilder/laser_before.jpg  used on input line 9.
+Package luatex.def Info: bilder/laser_before.jpg  used on input line 11.
 (luatex.def)             Requested size: 204.94751pt x 248.9882pt.
 LaTeX Font Info:    Font shape `TU/LatinModernMath(2)/m/n' will be
-(Font)              scaled to size 9.00096pt on input line 10.
+(Font)              scaled to size 9.00096pt on input line 12.
 LaTeX Font Info:    Font shape `TU/LatinModernMath(2)/m/n' will be
-(Font)              scaled to size 6.00064pt on input line 10.
+(Font)              scaled to size 6.00064pt on input line 12.
 LaTeX Font Info:    Font shape `TU/LatinModernMath(3)/m/n' will be
-(Font)              scaled to size 8.99904pt on input line 10.
+(Font)              scaled to size 8.99904pt on input line 12.
 LaTeX Font Info:    Font shape `TU/LatinModernMath(3)/m/n' will be
-(Font)              scaled to size 5.99936pt on input line 10.
-<bilder/laser_after.jpg, id=155, 830.10126pt x 926.46124pt>
+(Font)              scaled to size 5.99936pt on input line 12.
+<bilder/laser_after.jpg, id=157, 830.10126pt x 926.46124pt>
 File: bilder/laser_after.jpg Graphic file (type jpg)
 <use bilder/laser_after.jpg>
-Package luatex.def Info: bilder/laser_after.jpg  used on input line 15.
+Package luatex.def Info: bilder/laser_after.jpg  used on input line 17.
 (luatex.def)             Requested size: 204.94751pt x 228.73087pt.
-<bilder/fluorescence.jpg, id=158, 995.72pt x 638.385pt>
+<bilder/fluorescence.jpg, id=161, 995.72pt x 638.385pt>
 File: bilder/fluorescence.jpg Graphic file (type jpg)
 <use bilder/fluorescence.jpg>
-Package luatex.def Info: bilder/fluorescence.jpg  used on input line 27.
+Package luatex.def Info: bilder/fluorescence.jpg  used on input line 30.
 (luatex.def)             Requested size: 334.60571pt x 214.52512pt.
-<bilder/spectrum.jpg, id=161, 2592.68625pt x 1441.385pt>
+ [9<./bilder/laser_before.jpg><./bilder/laser_after.jpg>]
+<bilder/spectrum.jpg, id=173, 2592.68625pt x 1441.385pt>
 File: bilder/spectrum.jpg Graphic file (type jpg)
 <use bilder/spectrum.jpg>
-Package luatex.def Info: bilder/spectrum.jpg  used on input line 37.
+Package luatex.def Info: bilder/spectrum.jpg  used on input line 41.
 (luatex.def)             Requested size: 334.60571pt x 186.02301pt.
-) (./content/diskussion.tex [9<./bilder/laser_before.jpg><./bilder/laser_after.jpg>] [10<./bilder/fluorescence.jpg><./bilder/spectrum.jpg>]) [11
-
-]
+ [10<./bilder/fluorescence.jpg>]) (./content/diskussion.tex) [11<./bilder/spectrum.jpg>]
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lmtt' (encoding: TU).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
  (./content/anhang.tex [12]) [13] (./build/main.aux)
 Package rerunfilecheck Info: File `main.aux' has not changed.
-(rerunfilecheck)             Checksum: D291DACB65D3D395701EFF04BFB673A9;20989.
+(rerunfilecheck)             Checksum: 0BEE2C9D23C920A530591E4FD521C413;20990.
 
 
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `main.toc' has not changed.
-(rerunfilecheck)             Checksum: 915E0733D90016DD5D6AEF9931C76F8B;2715.
+(rerunfilecheck)             Checksum: B62BD0946E689924639E8155534335C5;2716.
 
 Package biblatex Warning: Please (re)run Biber on the file:
 (biblatex)                main
@@ -1509,13 +1508,13 @@ Here is how much of LuaTeX's memory you used:
    7 hlist, 2 vlist, 2 rule, 5 glue, 4 kern, 1 glyph, 22 attribute, 78 glue_spec, 13 attribute_list, 1 write, 5 pdf_action nodes
    avail lists: 1:1,2:1202,3:304,4:135,5:363,6:64,7:7292,8:125,9:318,10:19,11:789
  56724 multiletter control sequences out of 65536+600000
- 125 fonts using 47705155 bytes
+ 125 fonts using 47705359 bytes
  113i,11n,117p,10617b,2933s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2021/texmf-dist/fonts/opentype/public/lm/lmmono10-regular.otf></usr/local/texlive/2021/texmf-dist/fonts/opentype/public/lm/lmromancaps10-regular.otf></usr/local/texlive/2021/texmf-dist/fonts/opentype/public/lm/lmroman10-italic.otf></usr/local/texlive/2021/texmf-dist/fonts/opentype/public/lm/lmroman6-regular.otf></usr/local/texlive/2021/texmf-dist/fonts/opentype/public/lm/lmroman8-regular.otf></usr/local/texlive/2021/texmf-dist/fonts/opentype/public/lm/lmroman9-regular.otf></usr/local/texlive/2021/texmf-dist/fonts/opentype/public/lm/lmroman9-bold.otf></usr/local/texlive/2021/texmf-dist/fonts/opentype/public/lm/lmroman10-bold.otf></usr/local/texlive/2021/texmf-dist/fonts/opentype/public/lm-math/latinmodern-math.otf></usr/local/texlive/2021/texmf-dist/fonts/opentype/public/lm-math/latinmodern-math.otf></usr/local/texlive/2021/texmf-dist/fonts/opentype/public/lm/lmroman10-regular.otf></usr/local/texlive/2021/texmf-dist/fonts/opentype/public/lm/lmroman12-regular.otf></usr/local/texlive/2021/texmf-dist/fonts/opentype/public/lm/lmsans10-bold.otf>
-Output written on main.pdf (13 pages, 3835462 bytes).
+Output written on main.pdf (13 pages, 3836089 bytes).
 
-PDF statistics: 361 PDF objects out of 1000 (max. 8388607)
- 275 compressed objects within 3 object streams
+PDF statistics: 365 PDF objects out of 1000 (max. 8388607)
+ 279 compressed objects within 3 object streams
  56 named destinations out of 1000 (max. 131072)
  169 words of extra memory for PDF output out of 10000 (max. 100000000)
 
