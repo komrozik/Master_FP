@@ -30,10 +30,20 @@ errors = np.sqrt(np.diag(cov))
 params1_err = unp.uarray(params1,errors)
 err = params1_err[0]*df['I']+params1_err[1]*df['I']**2+params1_err[2]*df['I']**3+params1_err[3]
 
+
 params2,cov = curve_fit(g,df['I'][0:25],df['B'][0:25])
 errors = np.sqrt(np.diag(cov))
 params2_err = unp.uarray(params2,errors)
 err = params2_err[0]*df['I']+params2_err[1]
+
+print('Polynom 3.Ordnung Fit:')
+print(f'Parameter 3.Ordnung : {params1_err[2]}')
+print(f'Parameter 2.Ordnung : {params1_err[1]}')
+print(f'Parameter 1.Ordnung : {params1_err[0]}')
+print(f'Parameter 0.Ordnung : {params1_err[3]}')
+
+print('Linearer Fit:')
+print(f'Die Steigung ist {params2_err[0]} und der y-Achsenabschnitt ist {params2_err[1]}')
 
 x = np.linspace(0,8,1000)
 
