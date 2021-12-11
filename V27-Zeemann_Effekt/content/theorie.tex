@@ -136,7 +136,7 @@
             \begin{figure}[h]
                 \center
                 \includegraphics[width=0.35\textwidth]{bilder/normalerZeemann.jpeg}
-                \caption{Die Aufspaltung der Zustände $^1\text{D}_2$ und $^1\text{P}_1$ und die möglichen Übergänge zwischen diesen Zuständen sind hier dargestellt. \cite{anleitung}}
+                \caption{Die Aufspaltung der Zustände $^1\text{D}_2$ und $^1\text{P}_1$ und die möglichen Übergänge zwischen diesen Zuständen sind hier dargestellt. \cite{tu_dortmund_versuchsanleitung_2021}}
                 \label{fig:normalerZeemann}
             \end{figure}
             \FloatBarrier
@@ -147,13 +147,13 @@
             \begin{figure}[h]
                 \center
                 \includegraphics[width=0.7\textwidth]{bilder/anomalerZeemann.jpeg}
-                \caption{Die Aufspaltung der Zustände $^1\text{D}_2$ und $^1\text{P}_1$ und die möglichen Übergänge zwischen diesen Zuständen sind hier dargestellt. \cite{anleitung}}
+                \caption{Die Aufspaltung der Zustände $^1\text{D}_2$ und $^1\text{P}_1$ und die möglichen Übergänge zwischen diesen Zuständen sind hier dargestellt. \cite{tu_dortmund_versuchsanleitung_2021}}
                 \label{fig:anomalerZeemann}
             \end{figure}
             \FloatBarrier
             Die Energiedifferenz zwischen zwei aufgespaltenen Energieniveaus lässt sich bestimmen aus
             \begin{equation}
-                \Delta E = \bigl(g_{J1} m_{J1} - g_{J1} m_{J1}\bigr) \mu_{\text{B}} B \;.
+                \Delta E = \bigl(g_{J,1} m_{J,1} - g_{J,2} m_{J,2}\bigr) \mu_{\text{B}} B \;.
             \end{equation}
 
 
@@ -162,7 +162,7 @@
         \begin{figure}[h]
             \center
             \includegraphics[width=0.7\textwidth]{bilder/LummerGehrckePlatte.jpeg}
-            \caption{Die Funktionsweise der Lummer Gehrcke Platte ist hier schematisch aufgezeigt. \cite{anleitung}}
+            \caption{Die Funktionsweise der Lummer Gehrcke Platte ist hier schematisch aufgezeigt. \cite{tu_dortmund_versuchsanleitung_2021}}
             \label{fig:LummerGehrckePlatte}
         \end{figure}
         \FloatBarrier
@@ -180,4 +180,26 @@
         \begin{equation}
             \delta \lambda = \frac{1}{2} \frac{\delta s}{\Delta s} \Delta \lambda_D \;,
         \end{equation}
-        wobei $\Delta s$ der Abstand der Interferenzmaxima bei ausgeschaltetem Magnetfeld ist und 
+        wobei $\Delta s$ der Abstand der Interferenzmaxima bei ausgeschaltetem Magnetfeld ist und $\delta s$ der Abstand der aufgespaltenen Linien bei angeschaltetem Magnetfeld ist.
+
+        Das Dispersionsgebiet
+        \begin{equation}
+            \Delta \lambda_D = \frac{\lambda^2}{2 d} \sqrt{\frac{1}{n^2 - 1}}
+        \end{equation}
+        gibt die maximale Wellenlängendifferenz zweier aufgespaltener Wellenlängen an, sodass sich die unterschiedlichen Ordnungen der Interferenzmaxima nicht überlagern.
+        Das Auflösungsvermögen $A$ einer bestimmten Wellenlänge ist gegeben als
+        \begin{equation}
+            A = \frac{L}{\lambda} (n^2 - 1) \;,
+        \end{equation}
+        wobei $L$ die Länge der Platte ist.
+        
+        Mit den gegebenen Werten ergeben sich die Dispersionsgebiete und Auflösevermögen für den Übergang mit \SI{643,8}{nm} als
+        \begin{align*}
+            \Delta \lambda_D = \SI{48,91}{pm} \\
+            A = 2,09 \cdot 10^5
+        \end{align*}
+        und für den Übergang mit \SI{480}{nm} als
+        \begin{align*}
+            \Delta \lambda_D = \SI{26,95}{pm} \\
+            A = 2,85 \cdot 10^5 \;.
+        \end{align*}
