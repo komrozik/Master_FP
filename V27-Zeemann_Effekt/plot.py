@@ -86,9 +86,9 @@ plt.close()
 
 
 
-df1 = pd.read_csv('data/data_test_rot_643.txt'
+df1 = pd.read_csv('data/data_rot_senkrecht.txt'
                  ,header =[1])
-df2 = pd.read_csv('data/data_test_blau.txt'
+df2 = pd.read_csv('data/data_blau_senkrecht.txt'
                  ,header =[1])
 
 
