@@ -5,6 +5,13 @@
     \label{sec:theorie}
     \subsection{Operationsverstärker (OV)}
     Ein Operationsverstärker ist ein elektrisches Bauteil das hauptsächlich auf einem Differenzverstärker basiert.
+    Der OV besitzt einen invertierten (-) und einen nicht invertierten (+) Eingang und gibt eine Ausgangsspannung aus die proportional zur Differenz des invertierten und nicht invertierten ist.
+    Der Betrag der Ausgangsspannung des OV kann dabei maximal so grß wie die Betriebsspannung des OV's werden.
+
+    Um einen Operationsverstärker zu beschreiben werden verschiedene definierende Größen verwendet.
+    Ein idealer Operationsverstärker hat beispielsweise einen Eingangswiederstand $R_E$ von $\infty \; \si{\ohm}$ und einen Ausgangswiederstand $R_A$ von \SI{0}{\ohm}, diese Werte können bei realen OVs nicht erreicht werden und im Regelfall sind eher Werte wie $R_E > \SI{1}{\mega\ohm}$ und $R_A ≈ \num{10}-\SI{1000}{\ohm}$ zu erwarten.
+    Die Vertärkung eines idealen OVs ist $V' = \frac{U_A}{U_E} ≈ \infty$ wobei typische Verstärkungen $V$ eines reellen OVs im Größenbereich \num{e4} bis \num{e6} liegen.
+    Außerdem hängt das genaue Verhalten eines reellen OVs von vielen Parametern ab und er ist auf einen Frequenzbereich von \SI{10}{\hertz} bis \SI{10}{\kilo\hertz} beschränkt, wohingegen die Parameter beim idealen OV vernachlässigt werden und er über den kompletten Frequenzbereich arbeitet.
     \subsection{LM741}
         \begin{figure}[ht]
             \centering
@@ -19,25 +26,49 @@
         Mit Kontakt 4 wird die Betriebsspannung für den invertierten Eingang und mit Kontakt 7 die für den nicht invertierten Eingang geliefert.
         Kontakt 8 ist 'No Connect' (NC) und hat keine Verwendung für den OV.
     \subsection{Invertierender-Linearverstärker}
-        Annahme: $U_N = 0$
-        Maschenregel:
+        Im Versuch wird unter anderem mit einem Linearverstärker gearbeitet.
+        Um die erwünschte Schaltung zu erreichen, wird der Ausgang des OV auf den invertierenden Eingang rückgekoppelt.
+        Gemäß der großen Leerlaufverstärkung kann $U_N = 0$ angenommen werden.
+        \begin{figure}[ht]
+            \centering
+            \includegraphics[width = 0.5\textwidth]{bilder/invertierender_verstaerker.png}
+            \caption{Der Invertierende Verstärker entnommen aus Federau 2017}
+            \label{fig:inv_Ver}
+        \end{figure}
+        Mithilfe der Maschenregel und der Knotenregel lässt sich dadurch die Verstärkung des invertierenden linearverstärkers in Abhängigkeit der Wiederstände bestimmen.
         \begin{align}
             U_E -U_{R_1}-U_N = 0\\
             U_E -U_{R_1} = 0\\
             U_E = U_{R_1}
         \end{align}
-        Knotenregel zwischen $R_1$ und $R_N$:
+        Mit der Knotenregel zwischen $R_1$ und $R_2$ ergibt sich:
         \begin{align}
-            I_1-I_2 = 0\\
-            \frac{U_{R_1}}{R_1} = \frac{U_{R_2}}{R_2}\\
-            U_{R_2} = \frac{R_2}{R_1} U_{R_1}\\
-            U_{A} = \frac{R_2}{R_1} U_{E}\\
+            I_1+I_2 = 0\\
+            \frac{U_{R_1}}{R_1} = -\frac{U_{R_2}}{R_2}\\
+            U_{R_2} = -\frac{R_2}{R_1} U_{R_1}\\
+            U_{A} = -\frac{R_2}{R_1} U_{E}\\
             U_{A} = V' \cdot U_{E}\\
-            V' =  \frac{R_2}{R_1} =\frac{U_A}{U_E}
+            V' = \frac{U_A}{U_E} = -\frac{R_2}{R_1}
         \end{align}
-        
+        Mit der Annahme einer endlichen Leerlaufvertärkung ändert sich diese Formel für den realen OV zu:
+        \begin{equation*}
+            \frac{1}{V'}= \frac{1}{V} +\frac{R_1}{R_2}
+        \end{equation*}
     \subsection{Umkehr-Integrator}
+        Um eine Integratorschaltung muss beim invertierenden Verstärker in der Rückkopplung lediglich der Wiederstand mit einem Kondensator getauscht werden.
+        \begin{figure}[ht]
+            \centering
+            \includegraphics[width = 0.5\textwidth]{bilder/integrator.png}
+            \caption{Der Integrator entnommen aus Federau 2017}
+            \label{fig:integrator}
+        \end{figure}
     \subsection{Invertierender-Differenzierer}
+        \begin{figure}[ht]
+            \centering
+            \includegraphics[width = 0.5\textwidth]{bilder/differenzierer.png}
+            \caption{Der Differenzierer entnommen aus Federau 2017}
+            \label{fig:differenzierer}
+        \end{figure}
     \subsection{nicht-invertierende-Schmitt-Trigger}
     \subsection{Signalgenerator}
     \subsection{Variierende Amplituden}
