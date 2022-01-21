@@ -42,18 +42,20 @@
             U_E = U_{R_1}
         \end{align*}
         Mit der Knotenregel zwischen $R_1$ und $R_2$ ergibt sich:
-        \begin{align*}
-            I_1+I_2 = 0\\
-            \frac{U_{R_1}}{R_1} = -\frac{U_{R_2}}{R_2}\\
-            U_{R_2} = -\frac{R_2}{R_1} U_{R_1}\\
-            U_{A} = -\frac{R_2}{R_1} U_{E}\\
-            U_{A} = V' \cdot U_{E}\\
+        \begin{align}
+            I_1+I_2 = 0\nonumber\\
+            \frac{U_{R_1}}{R_1} = -\frac{U_{R_2}}{R_2}\nonumber\\
+            U_{R_2} = -\frac{R_2}{R_1} U_{R_1}\nonumber\\
+            U_{A} = -\frac{R_2}{R_1} U_{E}\nonumber\\
+            U_{A} = V' \cdot U_{E}\nonumber\\
             V' = \frac{U_A}{U_E} = -\frac{R_2}{R_1}
-        \end{align*}
+            \label{eqn:verstaerkung}
+        \end{align}
         Mit der Annahme einer endlichen Leerlaufvertärkung ändert sich diese Formel für den realen OV zu:
-        \begin{equation*}
+        \begin{equation}
             \frac{1}{V'}= \frac{1}{V} +\frac{R_1}{R_2}
-        \end{equation*}
+            \label{eqn:reale_verstaerkung}
+        \end{equation}
     \subsection{Umkehr-Integrator}
     \label{sec:integrator}
         Um eine Integratorschaltung muss beim invertierenden Verstärker in der Rückkopplung lediglich der Widerstand mit einem Kondensator getauscht werden \ref{fig:integrator}.
