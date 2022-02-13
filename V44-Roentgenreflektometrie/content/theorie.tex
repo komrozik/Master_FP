@@ -30,7 +30,7 @@
         \begin{equation}
             n = 1-\delta+i\beta /; , \delta > 0
         \end{equation}
-        Wobei $\delta$ einer kleinen (ca \num{10e-6}) Korrektur entspricht und $\beta$ als Parameter die Absorption beschreibt.
+        Wobei $\delta$ einer kleinen (ca \num{e-6}) Korrektur entspricht und $\beta$ als Parameter die Absorption beschreibt.
         
         Wenn nun eine elektromagnetische Welle (in diesem Fall Röntgenstrahlung) aus dem Vakuum ($n = 0$) auf eine Grenzschicht zu einem Medium trifft wird ein Anteil der Welle mit einem Winkel $\alpha_r = \alpha_i$ reflektiert und der restliche Teil der Gesamtintensität transmittiert.
         Da für Röntgenstrahlung der Brechungsindex von Materie kleiner als Eins sein kann, wird das Medium für die Strahlung optisch dünner als das Vakuum und Totalreflexion ist möglich wenn die Strahlung mit einem kritisch kleinen Winkel einfällt.
@@ -97,6 +97,6 @@
         Dabei ist $P_j(z)$ die Wahrscheinlichkeit, dass die j-te Grenzfläche im Intervall $[z_j+z,z_j+z+\text{d}z]$ liegt.
         Beim Parrat Algorithmus werden dazu die Fresnelkoeffizienten modifiziert
         \begin{align}
-            \tilde{r}_{j,j+1} = r_{j,j+1} e^{-2k_{z,j}k_{z,j+1}/sigma_j^2}
-            \tilde{t}_{j,j+1} = t_{j,j+1} e^{ \frac{1}{2} \left(k_{z,j} -k_{z,j+1}\right)/sigma_j^2}
+            \tilde{r}_{j,j+1} = r_{j,j+1} e^{-2k_{z,j}k_{z,j+1} \sigma_j^2}\\
+            \tilde{t}_{j,j+1} = t_{j,j+1} e^{ \frac{1}{2} \left(k_{z,j} -k_{z,j+1}\right)\sigma_j^2}
         \end{align}
