@@ -1,122 +1,102 @@
 \section*{Ziel}
-    In diesem Versuch sollen grundlegende Schaltungen mit Operationsverstärkern aufgebaut und untersucht werden.
-    Hierbei sollen Unterschiede zwischen einem realen und idealen Operationsverstärker, sowie einige Anwendungsmöglichkeiten und Grenzen verdeutlicht werden \cite{anleitung}.
+    In diesem Versuch sollen die Dichte, Rauigkeit und Schichtdicke eines Films auf einem Siliziumwafer mithilfe von Röntgenstrahlung bestimmt werden.
 \section{Theorie}
     \label{sec:theorie}
-    \subsection{Operationsverstärker (OV)}
-    Ein Operationsverstärker ist ein elektrisches Bauteil das hauptsächlich auf einem Differenzverstärker basiert.
-    Der OV besitzt einen invertierten (-) und einen nicht invertierten (+) Eingang und gibt eine Ausgangsspannung aus die proportional zur Differenz des invertierten und nicht invertierten ist.
-    Der Betrag der Ausgangsspannung des OV kann dabei maximal so grß wie die Betriebsspannung des OV's werden.
+    \subsection{Röntgenröhre}
+        Um Röntgenstrahlung zu erzeugen kann eine sogenannte Röntgenröhre verwendet werden.
+        Eine Röntgenröhre besteht im Wesentlichen aus einer Kathode die Elektronen emittiert und einer Anode auf der die beschleunigten Elektronen eintreffen und Strahlung erzeugen.
+        Um die Elektronen von der Kathode zur Anode zu beschleunigen wird eine Hochspannung an die beiden Bauteile angeschlossen.
+        Um Wechselwirkungen der Elektronen mit der Luft zu verhindern ist es außerdem notwendig die Anode und Kathode in ein gemeinsames Vakuum einzuschließen.
+        Wenn die beschleunigten Elektronen auf die Anode treffen werden drei Arten von Strahlung erzeugt, die  charakteristische Röntgenstrahlung, die Bremsstrahlung und die Lilienfeldstrahlung.
 
-    Um einen Operationsverstärker zu beschreiben werden verschiedene definierende Größen verwendet.
-    Ein idealer Operationsverstärker hat beispielsweise einen Eingangswiderstand $R_E$ von $\infty \; \si{\ohm}$ und einen Ausgangswiderstand $R_A$ von \SI{0}{\ohm}, diese Werte können bei realen OVs nicht erreicht werden und im Regelfall sind eher Werte wie $R_E > \SI{1}{\mega\ohm}$ und $R_A ≈ \num{10}-\SI{1000}{\ohm}$ zu erwarten.
-    Die Verstärkung eines idealen OVs ist $V' = \frac{U_A}{U_E} ≈ \infty$ wobei typische Verstärkungen $V$ eines reellen OVs im Größenbereich \num{e4} bis \num{e6} liegen.
-    Außerdem hängt das genaue Verhalten eines reellen OVs von vielen Parametern ab und er ist auf einen Frequenzbereich von \SI{10}{\hertz} bis \SI{10}{\kilo\hertz} beschränkt, wohingegen die Parameter beim idealen OV vernachlässigt werden und er über den kompletten Frequenzbereich arbeitet.
-    \subsection{LM741}
-        \begin{figure}[H]
-            \centering
-            \includegraphics[width = 0.5\textwidth]{bilder/LM741.png}
-            \caption{Ein Überblick über die Inputs des Operationsverstärkers LM741}
-            \label{fig:LM741}
-        \end{figure}
-        Der LM741 OV besitzt 8 Kontakte für die verschiedenen Inputs des Verstärkers.
-        Um mit dem Verstärker zu arbeiten sind vor allem die zwei Input Kontakte des invertierten Inputs an der Position 2 und des nicht invertierten Inputs an der Position 3 und der Output Kontakt an der Position 6 wichtig.
-        Neben diesen Inputs und Outputs für das Verstärken besitzt das Bauteil noch mehrere für den Betrieb notwendige Kontakte.
-        Auf Position 1 und 5 befindet sich jeweils ein 'Offset Null' Kontakt.
-        Mit Kontakt 4 wird die Betriebsspannung für den invertierten Eingang und mit Kontakt 7 die für den nicht invertierten Eingang geliefert.
-        Kontakt 8 ist 'No Connect' (NC) und hat keine Verwendung für den OV.
-    \subsection{Invertierender-Linearverstärker}
-        Im Versuch wird unter anderem mit einem Linearverstärker gearbeitet.
-        Um die erwünschte Schaltung zu erreichen, wird der Ausgang des OV auf den invertierenden Eingang rückgekoppelt \ref{fig:inv_Ver}.
-        Gemäß der großen Leerlaufverstärkung kann $U_N = 0$ angenommen werden.
-        \begin{figure}[ht]
-            \centering
-            \includegraphics[width = 0.5\textwidth]{bilder/invertierender_verstaerker.png}
-            \caption{Der Invertierende Verstärker entnommen aus Federau 2017}
-            \label{fig:inv_Ver}
-        \end{figure}
-        Mithilfe der Maschenregel und der Knotenregel lässt sich dadurch die Verstärkung des invertierenden linearverstärkers in Abhängigkeit der Wiederstände bestimmen.
-        \begin{align*}
-            U_E -U_{R_1}-U_N = 0\\
-            U_E -U_{R_1} = 0\\
-            U_E = U_{R_1}
-        \end{align*}
-        Mit der Knotenregel zwischen $R_1$ und $R_2$ ergibt sich:
-        \begin{align}
-            I_1+I_2 = 0\nonumber\\
-            \frac{U_{R_1}}{R_1} = -\frac{U_{R_2}}{R_2}\nonumber\\
-            U_{R_2} = -\frac{R_2}{R_1} U_{R_1}\nonumber\\
-            U_{A} = -\frac{R_2}{R_1} U_{E}\nonumber\\
-            U_{A} = V' \cdot U_{E}\nonumber\\
-            V' = \frac{U_A}{U_E} = -\frac{R_2}{R_1}
-            \label{eqn:verstaerkung}
-        \end{align}
-        Mit der Annahme einer endlichen Leerlaufvertärkung ändert sich diese Formel für den realen OV zu:
+        Charakteristische Röntgenstrahlung ist abhängig von der Elektronenkonfiguration der Anode und entsteht dadurch, dass die beschleunigten Elektronen die Elektronen in den Energieniveaus des Anodenmaterials stoßen und aus einer niedrigen Schale entfernen.
+        Für den Stoß muss dabei mindestens die Energie aufgewendet werden die für das jeweilige Elektron nötig ist um auf das nächste unbesetzte Energieniveau angeregt zu werden.
+        Wenn nun das Elektron aus seinem Platz in der niedrigen Schale gestoßen wurde rückt ein Elektron von einem höheren Energieniveau in seinen Platz und die Energiedifferenz der Zustände wird in Form von Röntgenstrahlung abgestrahlt.
+
+        Die Bremsstrahlung wird von den beschleunigten Elektronen erzeugt wenn diese in das Coulombfeld der Kerne des Anodenmaterials gelangen, denn durch das elektrische Feld der Kerne werden die Elektronen abgelenkt und bewegte Ladungen strahlen elektromagnetische Strahlung ab, welche in diesem Fall kontinuierliche Röntgenstrahlung ist.
+
+        Die Lilienfeldstrahlung ist eine spezielle Art von Übergangsstrahlung und entsteht beim Übergang der Elektronen vom Vakuum ins Anodenmaterial. Allerdings handelt es sich bei der Lilienfeldstrahlung um sichtbare elektromagnetische Strahlung und sie ist daher hier nicht von Interesse.
+
+        Durch die charakteristische Strahlung und die Bremsstrahlung wird mit einer RöntgenRöhre ein kontinuierliches Röntgenspektrum mit einigen Peaks der charakteristischen Energiedifferenzen des Anodenmaterials erzeugt.
+    \subsection{Göbelspiegel}
+        Um divergente Röntgenstrahlung zu bündeln und zu monochromatisieren werden sogenannte Göbelspiegel verwendet.
+        Göbelspiegel bestehen aus mehreren schichten Parabolischen Spiegeln und können das Röntgenlicht bündeln und Monochromatisieren.
+    \subsection{Brechung und Reflexion von Röntgenstrahlung}
+        Röntgenstrahlen werden wie andere elektromagnetsche Strahlen auf Reflektiert und Gebrochen.
+        Allerdings tritt bei Röntgenstrahlung die Besonderheit auf, dass der Realteil des Brechungsindex für Medien kleiner als Eins sein kann.
+        Der Realteil kleiner Eins kommt zustande, da die Schwingungsfrequenz der Röntgenstrahlung höher ist als die der Elektronen im Medium.
+        In diesem Fall kann die Phasengeschwindigkeit des Lichtes (aber nicht die Gruppengeschwindigkeit) einen Wert größer als die Lichtgeschwindigkeit $c$ annehmen.
+        Um den Brechungsindex zu approximieren wird dabei folgende Formel verwendet:
         \begin{equation}
-            \frac{1}{V'}= \frac{1}{V} +\frac{R_1}{R_2}
-            \label{eqn:reale_verstaerkung}
+            n = 1-\delta+i\beta /; , \delta > 0
         \end{equation}
-    \subsection{Umkehr-Integrator}
-    \label{sec:integrator}
-        Um eine Integratorschaltung muss beim invertierenden Verstärker in der Rückkopplung lediglich der Widerstand mit einem Kondensator getauscht werden \ref{fig:integrator}.
-        Die entstehende Schaltung kann nun das Eingangssignal integrieren.
-        Der Kondensatorstrom über die Zeit integriert entspricht der Kapazität mit der angelegten Spannung multipliziert.
-        Mithilfe der Knotenregel ergibt sich daher für den Knoten vor dem invertierenden Eingang:
-        \begin{equation*}
-            U_a = -\frac{1}{RC} \int U_1(t) dt
-        \end{equation*}
-        Daher wird wie zu sehen im Ausgangssignal das Eingangsignal integriert mit einem Faktor der antiproportional zum Widerstand und Kapazität ist.
+        Wobei $\delta$ einer kleinen (ca \num{10e-6}) Korrektur entspricht und $\beta$ als Parameter die Absorption beschreibt.
+        
+        Wenn nun eine elektromagnetische Welle (in diesem Fall Röntgenstrahlung) aus dem Vakuum ($n = 0$) auf eine Grenzschicht zu einem Medium trifft wird ein Anteil der Welle mit einem Winkel $\alpha_r = \alpha_i$ reflektiert und der restliche Teil der Gesamtintensität transmittiert.
+        Da für Röntgenstrahlung der Brechungsindex von Materie kleiner als Eins sein kann, wird das Medium für die Strahlung optisch dünner als das Vakuum und Totalreflexion ist möglich wenn die Strahlung mit einem kritisch kleinen Winkel einfällt.
+
+        Um die das Reflexions- und Transmissionsverhalten der Wellle zu beschreiben werden die Fresnel\'schen Gleichungen genutzt.
+        Im Allgemienen wird bei den Gleichungen zwischen einer polarisation senkrecht oder parallel zur einfallsebene unterschieden, bei Röntgenstrahlung muss dies aber nicht getan werden, da die Brechungsinizes nähreungsweise gleich sind.
+        \begin{align}
+            r = \frac{2n_1 \sin\left(\alpha_i\right)}{ n_1 \sin\left(\alpha_i\right) +n_2 \sin\left(\alpha_t\right) } \\
+            t = \frac{2n_1 \sin\left(\alpha_i\right) - n_2 \sin\left(\alpha_t\right) }{ n_1 \sin\left(\alpha_i\right) +n_2 \sin\left(\alpha_t\right) }
+        \end{align}
+        Daher ergibt sich das Verhältnis der Intensitäten, die sogenannte Fresnel-Reflektivität zu 
+        \begin{equation}
+            R_F = |r|^2 = \frac{\left(\alpha_i - p_+\right)^2 + p_-^2}{\left(\alpha_i + p_+\right)^2 + p_-^2}
+        \end{equation}
+        mit
+        \begin{equation}
+            p_\pm^2 = \frac{1}{2} \left(\sqrt{\left( \alpha_i - \alpha_c\right)^2 + 4\beta^2} \pm \left( \alpha_i^2 - \alpha_c^2\right)\right)
+        \end{equation}
+        Für den Fall, dass $\alpha_i > 3\alpha_c$ so ist $R_F$ näherungsweise gegeben durch
+        \begin{equation}
+            R_F ≈ \left(\frac{\alpha_c}{2\alpha_i}\right)^4
+        \end{equation}
+    \subsection{Kiessig-Oszillationen}
+        Im falle des Experiments haben wir kein ideales Medium unendlicher Tiefe, sondern ein Zweischichtensystem.
+        Durch die Reflexion an beiden Grenzschichten können die emittierten Strahlen interferieren und das Muster kann Aufschluss über die Schichtdicke $d$ liefern.
+        Dabei gilt
+        \begin{align}
+            2 d \sin\left(\alpha_i\right) = n\lambda\\
+            d = \frac{2\pi}{\Delta q} ≈ \frac{\lambda}{2\Delta\alpha_i}
+        \end{align}
+        dabei steht q für den Wellenübertrag in z-Richtung und ergibt sich zu $q = 2k \sin\left(\alpha_i\right)$ mit dem Betrag des Wellenvektors $k$.
+        Durch diese Interferenz oszilliert die Intensität der gemessenen ausfallenden Strahlung, wie in Abbildung \ref{fig:oszillation} zu sehen.
         \begin{figure}[ht]
             \centering
-            \includegraphics[width = 0.5\textwidth]{bilder/integrator.png}
-            \caption{Der Integrator entnommen aus Federau 2017}
-            \label{fig:integrator}
+            \includegraphics[width = 0.8\textwidth]{bilder/Oszillation.png}
+            \caption{Oszillation}
+            \label{fig:oszillation}
         \end{figure}
-    \subsection{Invertierender-Differenzierer}
-        Der invertierende Differenzierer ist aufgebaut wie der invertierende Linearverstärker, allerdings wird anstatt eines Widerstands im Eingangssignal ein Kondensator eingebaut \ref{fig:differenzierer}.
-        Für die Ausgangsspannung des invertierenden Differenzierers ergibt sich:
-        \begin{equation*}
-            U_a = -RC \frac{dU_1}{dt}
-        \end{equation*}
-        Somit wird das differenzierte Eingangssignal mit einem Faktor proportional zu Kapazität und Widerstand ausgegeben.
+        Wenn die Ordnungszahl $m$ und der Winkel $\alpha_i$ für zwei Minima bekannt ist kann die Schichtdicke und die Dispersion und damit der Brechungsindex bestimmt werden.
+        \begin{align}
+            \delta = \frac{1}{2} \frac{\alpha_{i,1}^2 m_2^2 - \alpha_{i,2}^2 m_1^2}{m_2^2 -m_1^2}\\
+            d = \frac{\lambda}{2\Delta\alpha_i}
+        \end{align}
+    \subsection{Parrat-Algorithmus}
+        Im falle eines Mehrschichtensystems, siehe Abbildung \ref{fig:mehrschicht}, muss der sogenannte Parrat-Algorithmus verwendet werden um das System zu beschreiben.
         \begin{figure}[ht]
             \centering
-            \includegraphics[width = 0.5\textwidth]{bilder/differenzierer.png}
-            \caption{Der Differenzierer entnommen aus Federau 2017}
-            \label{fig:differenzierer}
+            \includegraphics[width = 0.8\textwidth]{bilder/Mehrschichtsystem.png}
+            \caption{Mehrschichtsystem}
+            \label{fig:mehrschicht}
         \end{figure}
-    \subsection{Nicht-invertierende-Schmitt-Trigger}
-        Der nicht-invertierende Schmitt Trigger hat denselben Aufbau wie der invertierende Linearverstärker mit dem Unterschied dass in diesem Fall die Rückkopplung nicht auf den invertierenden sondern auf den nicht-invertierenden Eingang gelegt wird, dies ist eine sogenannte Mitkopplung \ref{fig:schmitt_trigger}.
-        Mit der Schaltung des Schmitt Triggers kann der OV als Schalter genutzt werden.
-        Immer wenn das Eingangsignal einen Schwellwert erreicht ändert sich das Ausgangssignal schlagartig zu einem von zwei festen Zuständen.
-        Der Schwellwert $U_+$ ergibt sich zu:
-        \begin{equation*}
-            U_+  = \pm \frac{R_1}{R_2}U_B
-        \end{equation*}
-        mit der Betriebsspannung $U_B$. 
-        Die beiden Zustände für das Ausgangssignal sind dabei $\pm U_B$.
-        \begin{figure}[ht]
-            \centering
-            \includegraphics[width = 0.5\textwidth]{bilder/schmitt_trigger.png}
-            \caption{Der Schmitt-Trigger entnommen aus der Versuchsanleitung}
-            \label{fig:schmitt_trigger}
-        \end{figure}
-    \subsection{Signalgenerator}
-        Der Signalgenerator entsteht wenn hinter der Schmitt Trigger Schaltung noch ein Integrator (\ref{sec:integrator}) geschaltet wird \ref{fig:signalgenerator}.
-        Wenn nun die Ausgangsspannung des Schmitt Triggers (eine Rechtecksspannung) anschließend mit dem Integrator integriert wird ist es möglich mit dieser Schaltung ein Dreiecksspannungssignal zu erzeugen.
-        \begin{figure}[ht]
-            \centering
-            \includegraphics[width = 0.5\textwidth]{bilder/signalgenerator.png}
-            \caption{Der Signalgenerator entnommen aus der Versuchsanleitung}
-            \label{fig:signalgenerator}
-        \end{figure}
-    \subsection{Variierende Amplituden}
-        Um eine Sinusspannung mit variierenden Amplituden zu erreichen wird die Schaltung gemäß Abbildung \ref{fig:variierende_Amp} aufgebaut.
-        Die Schltung umfasst eine Verbindung von zwei Integratorschaltungen mit einem Invertierer.
-        Durch diese Kombination von Schaltungen ist es möglich eine Sinusspannung zu erzeugen, dabei lässt sich durch das eingebaute Potentiometer dei Amplitude der Sinusspannung beeinflussen.
-        \begin{figure}[ht]
-            \centering
-            \includegraphics[width = 0.5\textwidth]{bilder/variierende_Amp.png}
-            \caption{Die variierende Amplituden Schaltung entnommen aus der Versuchsanleitung}
-            \label{fig:variierende_Amp}
-        \end{figure}
+        Der Parrat-Algorithmus ist ein rekursiver Algorithmus zum berechnen des Verhaltnisses der reflektierten und transmittierten Welle an der j-ten Grenzschicht.
+        \begin{align}
+            X_j = \frac{j}{T_j} = e^{-2ik_{z,j}z_j} \frac{r_{j,j+1} + X_{j+1} e^{-2ik_{z,j+1}z_j}}{1 + r_{j,j+1}X_{j+1} e^{-2ik_{z,j+1}z_j}}\\
+            r_{j,j+1} = \frac{k_{z,j} - k_{z,j+1}}{k_{z,j} + k_{z,j+1}}
+        \end{align}
+        wobei $r_{j,j+1}$ die Fresnelaktivität der j-ten Grenzfläche ist.
+    \subsection{Rauigkeit}
+        Im realen Fall sind Oberflächen nicht perfekt eben sondern haben eine Rauigkeit.
+        Diese Rauigkeit kann theoretisch mit der root-mean-square-Rauigkeit beschrieben werden.
+        \begin{equation}
+            \sigma_j^2 = \int \left(z-z_j\right)^2\cdot P_j(z) \text{d}z        
+        \end{equation}
+        Dabei ist $P_j(z)$ die Wahrscheinlichkeit, dass die j-te Grenzfläche im Intervall $[z_j+z,z_j+z+\text{d}z]$ liegt.
+        Beim Parrat Algorithmus werden dazu die Fresnelkoeffizienten modifiziert
+        \begin{align}
+            \tilde{r}_{j,j+1} = r_{j,j+1} e^{-2k_{z,j}k_{z,j+1}/sigma_j^2}
+            \tilde{t}_{j,j+1} = t_{j,j+1} e^{ \frac{1}{2} \left(k_{z,j} -k_{z,j+1}\right)/sigma_j^2}
+        \end{align}
