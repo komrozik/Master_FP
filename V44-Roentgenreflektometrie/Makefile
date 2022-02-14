@@ -1,12 +1,16 @@
 all: build/main.pdf
 
-.PRECIOUS: build/Abgabe.pdf
+.PRECIOUS: build/main.pdf
 # hier Python-Skripte:
-#plots/B_Feld.pdf : plot.py | build
-#	TEXINPUTS=$$(pwd): python plot.py
+plots/DetektorScan.pdf plots/Strahlbreite.pdf plots/Geometriewinkel.pdf plots/Reflektivitaetskurve1.pdf plots/Reflektivitaetskurve2.pdf: plot.py | build
+	TEXINPUTS=$$(pwd): python plot.py
 
 # hier weitere Abhängigkeiten für build/main.pdf deklarieren:
-#build/main.pdf: plots/B_Feld.pdf 
+build/main.pdf: plots/DetektorScan.pdf \
+				plots/Strahlbreite.pdf \
+				plots/Geometriewinkel.pdf \
+				plots/Reflektivitaetskurve1.pdf \
+				plots/Reflektivitaetskurve2.pdf \
 
 build/main.pdf: FORCE | build
 	  TEXINPUTS=build: \

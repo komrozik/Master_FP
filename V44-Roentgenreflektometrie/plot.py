@@ -6,59 +6,36 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 from scipy.optimize import curve_fit
+from scipy.signal import find_peaks
 import uncertainties.unumpy as unp
+from uncertainties import ufloat
 from uncertainties.unumpy import (nominal_values as noms, std_devs as stds)
-import scipy.constants as const
+# import scipy.constants as const
 
 
-if False:
-    U, phi, nu = np.genfromtxt('data/test/data1.txt'
-                  ,unpack=True
-                  ,delimiter = ","
-                  ,skip_header = 1
-                   )
-df1 = pd.read_csv('data/data1.txt'
-                 ,header =[0])
-df2 = pd.read_csv('data/data2.txt'
-                 ,header =[0])
-df3 = pd.read_csv('data/data3.txt'
-                 ,header =[0])
-df_ph1 = pd.read_csv('data/test/data1.txt'
-                 ,header =[0])
-df_ph2 = pd.read_csv('data/test/data2.txt'
-                 ,header =[0])
 
+################################################################################################################################
+### Eingenschaften des Röntgenstrahls bestimmen
 
-def compute_V(df):
-    """Caculates the Amplification for given Currents.
+alpha_detektor, I_detektor  = np.genfromtxt('data/Detector_scan.UXD'
+                ,unpack=True
+                ,delimiter = ""
+                ,skip_header = 0
+                )
 
-        Parameters
-        ----------
-        U_E: float
-            The Input Current
-        U_A: float
-            The Output Current
-
-        Returns
-        -------
-        V: float
-            The Amplification
-    """
-    if 'V' not in df.columns:
-        df['V'] = df['U_A'] / df['U_E']
-    return df['V']
-
-def f(x,a,b):
-    """Calculates an exponential
+def f(x,A,x_0,c):
+    """Eine Gaußsche Glocke zum fitten an Messwerte.
 
         Parameters
         ----------
         x: float
-            X-Value
-        a: float
-            Faktor
-        b: float
-            Exponent
+            x-value
+        A: float
+            height of the peak
+        x_0: float
+            x-position of the center of the peak
+        c: float
+            standard deviation (controls width of peak)
 
         Returns
         -------
@@ -66,192 +43,361 @@ def f(x,a,b):
             The value of the Funktion
     """
     
-    return a*x**b
-
-def horizontale(x,a):
-    return a
+    return A * np.exp(-(x - x_0) ** 2 / (2 * c ** 2))
 
 
-lim1 = 12
+params_detektor, cov = curve_fit(f, alpha_detektor, I_detektor, p0=[max(I_detektor), 0, 0.05])
+errors_detektor = np.sqrt(np.diag(cov))
+params_detektor_err = unp.uarray(params_detektor, errors_detektor)
 
-x_val1 = df1['nu'][lim1:].to_numpy()
-y_val1 = compute_V(df1[lim1:]).to_numpy()
-params1,cov = curve_fit(f, x_val1, y_val1)
-errors1 = np.sqrt(np.diag(cov))
-params1_err = unp.uarray(params1, errors1)
+FWHM = 2 * params_detektor_err[2] * np.sqrt(np.log(4))
 
-x_val_h = df1['nu'][:lim1].to_numpy()
-y_val_h = compute_V(df1[:lim1]).to_numpy()
-params_h,cov = curve_fit(horizontale, x_val_h, y_val_h)
-errors_h = np.sqrt(np.diag(cov))
-params_h_err = unp.uarray(params_h, errors_h)
-
-plt.figure(figsize=(6.4,3.96))#,dpi=300)
-plt.plot(df1['nu'][:lim1]
-         ,compute_V(df1[:lim1])
-         ,'.'
-         ,ms = 8
-         ,label = 'Plateaubereich'
+plt.figure(figsize=(7.2,4.4))#,dpi=300)
+plt.plot(alpha_detektor
+            ,I_detektor
+            ,marker='x'
+            ,markersize=5
+            ,linestyle=''
+            ,label = 'Messwerte'
+            ,mew=1.5
         )
-x = np.linspace(0, df1['nu'][lim1], num=10)
-y = np.full(10, params_h)
-# plt.hlines(params_h, 0, df1['nu'][lim1], color='grey', linestyles='--', label='Leerlaufverstärkung')
+x = np.linspace(alpha_detektor[0], alpha_detektor[-1], num=300)
 plt.plot(x
-         ,y
-         ,'--'
-         ,color='grey'
-         ,label = 'Leerlaufverstärkung'
-        )
-plt.plot(df1['nu'][lim1:]
-         ,compute_V(df1[lim1:])
-         ,'.'
-         ,ms = 8
-         ,label = 'gefittete Messwerte'
-        )
-plt.plot(df1['nu']
-            ,f(df1['nu'], *params1)
-            ,'--'
+            ,f(x, *params_detektor)
+            ,linestyle='-'
             ,label = 'Fit'
         )
-plt.xlabel(r'$\nu \; [\mathrm{kHz}]$')
-plt.ylabel(r'$V`$')
-plt.legend(loc = 'best')
+plt.axvline(params_detektor[1] - noms(FWHM)/2, 0, 10**6,
+            color='gray',
+            linestyle='--',
+            linewidth=1.5,
+            alpha=0.6
+            )
+plt.axvline(params_detektor[1] + noms(FWHM)/2, 0, 10**6,
+            color='gray',
+            linestyle='--',
+            linewidth=1.5,
+            alpha=0.6
+            )
+plt.hlines(params_detektor[0]/2, params_detektor[1] - noms(FWHM)/2, params_detektor[1] + noms(FWHM)/2,
+            color='gray',
+            linestyle='--',
+            linewidth=1.5,
+            alpha=0.6,
+            label='Halbwertsbreite'
+            )
+plt.xlabel(r'$\alpha \; [°]$')
+plt.ylabel(r'Intensität')
+plt.legend(loc = 'best', markerscale=1.5)
+plt.tight_layout()
+plt.savefig('plots/DetektorScan.pdf')
+# plt.show()
+plt.close()
+
+
+# for i in np.arange(len(I_detektor)):
+#     print(alpha_detektor[i], I_detektor[i])
+
+for name, param in zip(('A','x_0','c'), params_detektor_err):
+    print(r'{0}:  {1:.4f}'.format(name, param))
+# print('\n')
+print(r'Halbwertsbreite: {:.4f}'.format(FWHM))
+
+
+################################################################################################################################
+### Geometriefaktor bestimmen
+
+z1, I_z1  = np.genfromtxt('data/z_scan_05.UXD'
+                ,unpack=True
+                ,delimiter = ""
+                ,skip_header = 0
+                )
+I_z1 = I_z1 / max(I_z1)
+
+plt.figure(figsize=(7.2,4.4))#,dpi=300)
+plt.plot(z1
+            ,I_z1
+            ,linestyle='-'
+            ,linewidth=1.5
+            ,label = 'Messwerte'
+        )
+plt.axvline(0.015, 0, 10**6,
+            color='gray',
+            linestyle='--',
+            linewidth=1.5,
+            alpha=0.6,
+            label=r'Strahlbreite $d$}'
+            )
+plt.axvline(0.225, 0, 10**6,
+            color='gray',
+            linestyle='--',
+            linewidth=1.5,
+            alpha=0.6
+            )
+plt.xlabel(r'$z \; [\mathrm{mm}]$')
+plt.ylabel(r'$I \;/\; I_{\mathrm{max}}$')
+plt.legend(loc = 'best', markerscale=1.5)
+plt.tight_layout()
+plt.savefig('plots/Strahlbreite.pdf')
+# plt.show()
+plt.close()
+
+######################################
+
+alpha_rock1, I_rock1  = np.genfromtxt('data/rocking_scan_2theta_0.UXD'
+                ,unpack=True
+                ,delimiter = ""
+                ,skip_header = 0
+                )
+I_rock1 = I_rock1 / max(I_rock1)
+
+plt.figure(figsize=(7.2,4.4))#,dpi=300)
+plt.plot(alpha_rock1
+            ,I_rock1
+            ,linestyle='-'
+            ,linewidth=1.5
+            ,label = 'Messwerte'
+        )
+plt.axvline(-0.61, 0, 10**6,
+            color='gray',
+            linestyle='--',
+            linewidth=1.5,
+            alpha=0.6,
+            label=r'$\alpha_{\mathrm{g,1}} = 0,61°$'
+            )
+plt.axvline(0.63, 0, 10**6,
+            color='gray',
+            linestyle='--',
+            linewidth=1.5,
+            alpha=0.6,
+            label=r'$\alpha_{\mathrm{g,2}} = 0,63°$'
+            )
+plt.xlabel(r'$\alpha \; [°]$')
+plt.ylabel(r'$I \;/\; I_{\mathrm{max}}$')
+plt.legend(loc = 'best', markerscale=1.5)
+plt.tight_layout()
+plt.savefig('plots/Geometriewinkel.pdf')
+# plt.show()
+plt.close()
+
+
+################################################################################################################################
+### Reflektivität für eine Schicht
+alpha, I  = np.genfromtxt('data/messung.UXD'
+                ,unpack=True
+                ,delimiter = ""
+                ,skip_header = 0
+                )
+alpha_diff, I_diff  = np.genfromtxt('data/diffuser.UXD'
+                ,unpack=True
+                ,delimiter = ""
+                ,skip_header = 0
+                )
+I_0 = 884421*5         
+R_exp = (I - I_diff) / I_0
+
+def fresnelreflectivity(alpha):
+    """Die Reflektivität für einen Röntgenstrahl der Wellenlänge lam bei
+    sehr kleinem Einfallswinkeln an einer Silizium-Oberfläche berechnen.
+
+        Parameters
+        ----------
+        alpha: float
+            angle at which the reflectivity is computed
+
+        Returns
+        -------
+        R(alpha): float
+           reflectivity at a certain angle alpha
+    """
+
+    alpha_c = 0.223
+    beta = 1.73*10**(-7)
+
+    A_plus = np.sqrt(np.sqrt((alpha**2 - alpha_c**2)**2 + 4*beta) + (alpha**2 - alpha_c**2)) / np.sqrt(2)
+    A_minus = np.sqrt(np.sqrt((alpha**2 - alpha_c**2)**2 + 4*beta) - (alpha**2 - alpha_c**2)) / np.sqrt(2)
+
+    return ((alpha - A_plus)**2 + A_minus**2) / ((alpha + A_plus)**2 + A_minus**2)
+    
+
+plt.figure(figsize=(7.2,4.4))#,dpi=300)
+plt.plot(alpha
+            ,R_exp
+            ,linestyle='-'
+            ,linewidth=1.5
+            ,label = r'Messwerte $R_{\mathrm{exp}}$'
+        )
+plt.plot(alpha
+            ,fresnelreflectivity(alpha)
+            ,linestyle='--'
+            ,linewidth=1.5
+            ,label = 'Berechnete Fresnelreflektivität\neiner idealen Si-Schicht'
+        )
+plt.xlabel(r'$\alpha \; [°]$')
+plt.ylabel(r'$R$')
+plt.legend(loc = 'best', markerscale=1.5)
 plt.yscale('log')
-plt.xscale('log')
+plt.xlim(-0.05, 1.4)
 plt.tight_layout()
-plt.savefig('plots/linearVerstaerker.pdf')
+plt.savefig('plots/Reflektivitaetskurve1.pdf')
 # plt.show()
-plt.clf()
+plt.close()
 
-# Parameter des 1. Fits:
-# mitt = np.sum(compute_V(df1[:lim1]).to_numpy()) / df1['nu'][:lim1].size   #Mittelwert über konstante Messwerte
-# print('Leerlaufverstärkung: ',mitt)
-print('\n')
-llv = (params_h_err[0] * 10000) / (10000 - params_h_err[0] * 1)
-print(r'Leerlaufverstärkung: {:.8f}'.format(llv))
-for name, param in zip(('a','b'), params1_err):
-    print(r'{0}:  {1:.8f}'.format(name, param))
-print('\n')
+################################################################################################################################
+### Reflektivität mit Geometriefaktor korrigiert
 
-# Grenzfrequenz ausrechnen
-a = params1[0]
-b = np.abs(params1[1])
-a_err = errors1[0]
-b_err = errors1[1]
-nu_grenz = np.log(np.sqrt(2)/a)
-# fehler = np.sqrt((1/(a * np.log(b)))**2 * a_err**2 + (np.log(np.sqrt(2)/a) / b * (np.log(b))**2)**2 * b_err**2)
-# print(fehler)
+i=0
+while alpha[i] < 0.61:
+    i += 1
+print('\n'+'Grenzindex ab dem die Winkel \n größer als der Geometriewinkel sind: {}'.format(i))
+G = np.concatenate((20 * np.sin(alpha[:i+1]*np.pi/180) / 0.21, np.ones(len(alpha)-i-1)))
+with np.errstate(divide='ignore'):#, invalid='ignore'):
+    R = R_exp / G
 
-# Bandbreiten-Verstärkungs-Produkt ausrechnen
-nu_grenz = 375.0871
-produkt = nu_grenz * params_h_err[0]
-print(r'Bandbreitenprodukt: {:.8f}'.format(produkt))
+######################################
+### Schichtdicke d bestimmen
+lam = 1.54*10**(-10)
+peaks_untere_grenze = 70
+peaks_obere_grenze = 180
+indices = find_peaks(R[peaks_untere_grenze:peaks_obere_grenze], distance=5, width=1)[0]
 
-##############################################################################################################
+j = indices[0]
+alpha_diff = np.array([])
+for i in indices[1:]:
+    alpha_diff = np.append(alpha_diff, (i - j) * 0.005)
+    j = i
+alpha_diff_mitt_noms = np.sum(alpha_diff) / len(indices[1:])
+alpha_diff_mitt_stds = 1/len(indices[1:]) * np.sqrt(np.sum((alpha_diff - alpha_diff_mitt_noms)**2))
+alpha_diff_mitt = ufloat(alpha_diff_mitt_noms, alpha_diff_mitt_stds)
+print('Mittl. Abstand zwischen Maxima: {:.4f}'.format(alpha_diff_mitt))
+d = lam / (2 * alpha_diff_mitt * np.pi/180)
+print('Schichtdicke: {:.4e}'.format(d))
 
-plt.figure(figsize=(6.4,3.96))#,dpi=300)
-plt.plot(df_ph1['nu']
-         ,df_ph1['phi']
-         ,'.'
-         ,ms = 8
-         ,label = 'Messreihe 1'
+######################################
+### Reflektivität mit Parratt-Algorithmus berechnen + Kritische Winkel für Polysterol und Silizium berechnen
+
+z_1 = 0
+
+# d = 8.6*10**(-8)
+d = 8.6*10**(-8)
+delta_2 = 1 * 10**(-6)
+delta_3 = 7 * 10**(-6)
+sigma_1 = 8 * 10**(-10)
+sigma_2 = 6.8 * 10**(-10)
+
+anfangswerte = ([d, delta_2, delta_3, sigma_1, sigma_2])
+
+def parratt_algorithm(alpha, d, delta_2, delta_3, sigma_1, sigma_2):
+    """Berechnet die Gesamtreflektivität an einem 2-Schichtensystem.
+
+        Parameters
+        ----------
+        alpha: float
+            angle at which the reflectivity is computed
+        d: float
+            thickness of the thin polysterol layer
+        delta_2: float
+            delta_2 = 1 - n_2, where n_2 is the refractive index of polysterol
+        delta_3: float
+            delta_3 = 1 - n_3, where n_2 is the refractive index of silizium
+        sigma_2: float
+            roughness of the polysterol layer
+        sigma_3: float
+            roughness of the silizium layer
+
+        Returns
+        -------
+        R: float
+            entire reflectivity for the two-layer-system
+    """
+    lam = 1.54*10**(-10)
+    k = 2*np.pi/lam
+    mu_2 = 400
+    mu_3 = 14100
+
+    n_1 = 1
+    n_2 = 1 - delta_2 + 1j*lam/(4*np.pi)*mu_2
+    n_3 = 1 - delta_3 + 1j*lam/(4*np.pi)*mu_3
+    
+    k_z1 = k * np.sqrt(n_1**2 - np.cos(alpha * np.pi/180)**2)
+    k_z2 = k * np.sqrt(n_2**2 - np.cos(alpha * np.pi/180)**2)
+    k_z3 = k * np.sqrt(n_3**2 - np.cos(alpha * np.pi/180)**2)
+
+    r_1 = np.exp(-2 * k_z1 * k_z2 * sigma_1**2) * (k_z1 - k_z2) / (k_z1 + k_z2)
+    r_2 = np.exp(-2 * k_z2 * k_z3 * sigma_2**2) * (k_z2 - k_z3) / (k_z2 + k_z3)
+
+    X_2 = np.exp(-2j*k_z2 * d) * r_2
+    # X_1 = np.exp(-2j*k_z1 * z_1) * (r_1 + X_2 * np.exp(2j*k_z2 * z_1)) / (1 + r_1 * X_2 * np.exp(2j*k_z2 * z_1))
+    X_1 = (r_1 + X_2) / (1 + r_1 * X_2)
+
+    R = np.abs(X_1)**2
+
+    return R
+
+alpha_c_PS = np.sqrt(2*delta_2)*180/np.pi
+alpha_c_Si = np.sqrt(2*delta_3)*180/np.pi
+
+plt.figure(figsize=(7.2,4.4))#,dpi=300)
+plt.plot(alpha
+            ,R
+            ,linestyle='-'
+            ,linewidth=1.5
+            ,label = r'Messwerte $R_{\mathrm{exp,korr}}$'
         )
-plt.plot(df_ph2['nu']
-         ,df_ph2['phi']
-         ,'.'
-         ,ms = 8
-         ,label = 'Messreihe 2'
+plt.plot(alpha[peaks_untere_grenze+indices]
+            ,R[peaks_untere_grenze+indices]
+            ,'rx'
+            ,mew=1.5
+            ,label='Benutzte Maxima')
+plt.plot(alpha
+            ,parratt_algorithm(alpha, *anfangswerte)
+            ,linestyle='--'
+            ,linewidth=1.5
+            ,label = r'Berechnete Gesamtreflektivität $R_{\mathrm{parratt}}$'
         )
-plt.xlabel(r'$\nu \; [\mathrm{kHz}]$')
-plt.ylabel(r'Phase $\Phi \; [°]$')
-plt.legend(loc = 'best')
-# plt.yscale('log')
-# plt.xscale('log')
-plt.tight_layout()
-plt.savefig('plots/linearVerstaerkerPhase.pdf')
-# plt.show()
-plt.clf()
-
-
-##############################################################################################################
-lim2 = 5
-
-x_val2 = df2['nu'][:lim2].to_numpy()
-# y_val2 = compute_V(df2[lim2:]).to_numpy()
-y_val2 = df2['U_A'][:lim2].to_numpy()
-params2, cov = curve_fit(f, x_val2, y_val2)
-errors2 = np.sqrt(np.diag(cov))
-params2_err = unp.uarray(params2, errors2)
-
-plt.figure(figsize=(6.4,3.96))#,dpi=300)
-plt.plot(df2['nu'][lim2:]
-         ,df2['U_A'][lim2:]
-         ,'.'
-         ,ms = 8
-         ,label = 'nicht genutzte Messwerte'
-        )
-plt.plot(df2['nu'][:lim2]
-         ,df2['U_A'][:lim2]
-         ,'.'
-         ,ms = 8
-         ,label = 'gefittete Messwerte'
-        )
-plt.plot(df2['nu']
-            ,f(df2['nu'], *params2)
-            ,'--'
-            ,label = 'Fit'
-        )
-plt.xlabel(r'$\nu \; [\mathrm{kHz}]$')
-plt.ylabel(r'$U_A \; [\mathrm{V}]$')
-plt.legend(loc = 'best')
+plt.axvline(alpha_c_PS, 0, 0.725,
+            color='gray',
+            linestyle='--',
+            linewidth=1.5,
+            alpha=0.6,
+            label=r'$\alpha_{\mathrm{c,PS}} = 0,0810°$'
+            )
+plt.axvline(alpha_c_Si, 0, 0.725,
+            color='gray',
+            linestyle='--',
+            linewidth=1.5,
+            alpha=0.6,
+            label=r'$\alpha_{\mathrm{c,Si}} = 0,2144°$'
+            )
+plt.xlabel(r'$\alpha \; [°]$')
+plt.ylabel(r'$R$')
+plt.legend(loc = 'best', markerscale=1.5)
 plt.yscale('log')
-plt.xscale('log')
+plt.xlim(-0.05, 1.4)
+plt.ylim(10**(-6))
 plt.tight_layout()
-plt.savefig('plots/integrator.pdf')
+plt.savefig('plots/Reflektivitaetskurve2.pdf')
 # plt.show()
+plt.close()
 
-for name, param in zip(('a','b'), params2_err):
-    print(r'{0}:  {1:.8f}'.format(name, param))
-print('\n')
+# params_parratt, cov_parratt = curve_fit(parratt_algorithm, alpha[1:], R[1:], p0=anfangswerte, maxfev=100000, method='lm')
+
+for name, param in zip(('d', 'delta_2','delta_3', 'sigma_1', 'sigma_2'), anfangswerte):
+    print(r'{0}:  {1:.4e}'.format(name, param))
 
 
-##############################################################################################################
-lim3 = 7
+print('Krit. Winkel PS: {:.4f}'.format(alpha_c_PS))
+print('Krit. Winkel Si: {:.4f}'.format(alpha_c_Si))
 
-x_val3 = df3['nu'][:lim3].to_numpy()
-# y_val3 = compute_V(df3[lim3:]).to_numpy()
-y_val3 = df3['U_A'][:lim3].to_numpy()
-params3, cov = curve_fit(f, x_val3, y_val3)
-errors3 = np.sqrt(np.diag(cov))
-params3_err = unp.uarray(params3, errors3)
+######################################
+### Abweichungen von den Theoriewerten berechnen
+a_delta_2 = (3.5*10**(-6) - delta_2) / (3.5*10**(-6))
+a_delta_3 = (7.6*10**(-6) - delta_3) / (7.6*10**(-6))
+print(a_delta_2)
+print(a_delta_3)
 
-plt.figure(figsize=(6.4,3.96))#,dpi=300)
-plt.plot(df3['nu'][lim3:]
-         ,df3['U_A'][lim3:]
-         ,'.'
-         ,ms = 8
-         ,label = 'nicht genutzte Messwerte'
-        )
-plt.plot(df3['nu'][:lim3]
-         ,df3['U_A'][:lim3]
-         ,'.'
-         ,ms = 8
-         ,label = 'gefittete Messwerte'
-        )
-plt.plot(df3['nu']
-            ,f(df3['nu'], *params3)
-            ,'--'
-            ,label = 'Fit'
-        )
-plt.xlabel(r'$\nu \; [\mathrm{kHz}]$')
-plt.ylabel(r'$U_A \; [\mathrm{V}]$')
-plt.legend(loc = 'best')
-plt.yscale('log')
-plt.xscale('log')
-plt.tight_layout()
-plt.savefig('plots/differenzierer.pdf')
-# plt.show()
+a_alpha_c_PS = (0.153 - alpha_c_PS) / (0.153)
+a_alpha_c_Si = (0.223 - alpha_c_Si) / (0.223)
+print(a_alpha_c_PS)
+print(a_alpha_c_Si)
 
-for name, param in zip(('a','b'), params3_err):
-    print(r'{0}:  {1:.8f}'.format(name, param))
-print('\n')
