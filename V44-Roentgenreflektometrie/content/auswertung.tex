@@ -69,7 +69,7 @@
     \end{equation*}
     Die Differenz wird auf die im zweiten Z-Scan bestimmte Intensität des einfallenden Strahls $I_0$ normiert. Da die Reflektivitätsmessung je Messwert 5s dauerte und der die Messdauer pro Messwert beim Z-Scan 1s betrug, wird durch $5 \cdot I_0$ geteilt.
 
-    Zum Vergleich wird außerdem die Fresnelreflektivität nach ........... einer ideal glatten Siliziumschicht in \autoref{fig:Reflektivitaetskurve1} eingezeichnet. Dazu werden die folgenden Daten aus \cite{tu_dortmund_versuchsanleitung_2021_e1} entnommen:
+    Zum Vergleich wird außerdem die Fresnelreflektivität einer ideal glatten Siliziumschicht nach \autoref{eqn:fresnel} in \autoref{fig:Reflektivitaetskurve1} eingezeichnet. Dazu werden die folgenden Daten aus \cite{tu_dortmund_versuchsanleitung_2021_e1} entnommen:
     \begin{enumerate}
         \setlength{\itemindent}{70pt}
         \item[Grenzwinkel:] $\quad \alpha_c \approx \sqrt{2 \delta} = \sqrt{2 \cdot 7,6 \cdot 10^{-6}} \approx 0,223°$
@@ -103,8 +103,8 @@
         d = \frac{\lambda}{2 \overline{\Delta \alpha}} = (830 \pm 24) \; \text{\AA} \;.
     \end{equation*}
 
-    Bei der zweiten Methode wird der rekursive Parratt-Algorithmus für ein Zwei-Schicht-System, bestehend aus einer dünnen Schicht Polysterol und dem Substrat Silizium, verwendet. Alle für die Rechnung benötigten Daten wurden aus \cite{tu_dortmund_versuchsanleitung_2021_e1} entnommen.
-    Die Fresnelkoeffizienten werden nach ........... an die Rauheit der Grenzflächen angepasst.
+    Bei der zweiten Methode wird der rekursive Parratt-Algorithmus \ref{eqn:parratt} für ein Zwei-Schicht-System, bestehend aus einer dünnen Schicht Polysterol und dem Substrat Silizium, verwendet. Alle für die Rechnung benötigten Daten wurden aus \cite{tu_dortmund_versuchsanleitung_2021_e1} entnommen.
+    Die Fresnelkoeffizienten werden nach \autoref{eqn:rauheit} an die Rauheit der Grenzflächen angepasst.
     Die freien Parameter der Polysterol-Schichtdicke $d$, der Dispersionen von Polysterol $\delta_2$ und Silizium $\delta_3$, der Rauheiten der Grenzflächen $\sigma_1$ und $\sigma_2$ werden nun händisch angepasst.
     Zuerst wird die Schichtdicke auf den zuvor berechneten Wert gesetzt und die Dispersionen werden variiert, sodass die Werte der Theoriekurve möglichst nah an den gemessenen Werte liegen.
     Im Anschluss wird über die Schichtdicke der Abstand zwischen den Extrema eingestellt und die Rauheiten werden so angepasst, dass die gemessene und die theoretische Kurve auch bei größeren Winkeln möglichst gut übereinender liegen.
