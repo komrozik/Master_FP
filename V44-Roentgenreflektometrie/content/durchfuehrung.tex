@@ -13,3 +13,45 @@
         Zunächst soll die \SI{0}{\degree} Lage des Detektors bestimmt werden.
         Um den Strahl zu vermessen wird zunächst die Probe in der z-Richtung aus dem Strahlengang zu entfernen und der Detektor und Emitter auf die \SI{0}{\degree} markierung gefahren.
         Anschließend werden Detektor und Emitter in einem kleinen Winkelbereich um \SI{0}{\degree} bewegt um das Maximum zu bestimmen und dieses als neue \SI{0}{\degree} Position festzulegen.
+
+        Außerdem soll als nächstes die Probe in der x-, y- und z-Richtung positioniert werden.
+        Dazu wird ein x-, y- und z-Scan durchgeführt bei dem die Probe in der jeweiligen Richtung verschoben wird.
+        Beim x-Scan ist ein Plateau der Intensität zu erwarten und der Probentisch wird auf die Mitte des Plateaus gebracht.
+        Beim z-Scan ist ein Starker Abfall zu erwarten sobald der Probentisch in den Strahl fährt, daher wird die Position so festgelegt, dass der Tisch bei auf der Hälfte der abfallenden Gerade platziert wird, so dass die Hälfte des Strahls geblockt und die andere Hälfte durchgelassen wird.
+
+        Um die optimale position der Probe zu wählen wird außerdem ein Rockongscan durchgeführt.
+        Bei diesem Wird wird die Winkelsumme des Einfalls- und Ausfallswinkels konstant gehalten und die Intensität gemessen.
+        Beim Rockingscan wird ein symmetrisches Dreieck um die Null erwartet, allerdings kann es sein dass dies nicht zu messen ist, dann muss die y-Koordinate angepasst werden um die Probe genau in die Mitte auf den Rotationspunkt zu bringen.
+
+        Nach dem Rockingscan muss durch die Verschiebung des Probentisches ein erneuter z-Scan durchgeführt werden um die Probe fein zu justieren.
+        Anschließend wird die Ausrichtung noch weiter verbessert indem ein weiterer Rockingscan durchgeführt wird.
+        Zuletzt wird ein z-Scan unter einem Winkel durchgeführt und die Probe auf die Höhe der maximalen Intensität gebracht.
+        Damit ist die Justage abgeschlossen.
+
+    \subsection{Scan-Parameter}
+        \FloatBarrier
+        \begin{table}[h]
+            \centering
+            \caption{Die für die verschiedenen Scans verwendeten Parameter. Die z-Position ist nur eine relative Größe zur Justierung und die Einheit daher beliebig.}
+            \label{tab:Scan_parameter}
+        
+            \begin{tabular}{c c c c}
+              \toprule
+              {Typ} & {Messbereich} & {Schrittweite} & {Messdauer/Messpunkt [s]}\\ 
+              \midrule
+               Detektorscan  & -0,5° bis 0,5°  & 0,02°  &   1      \\
+               z-Scan  & -1 bis 1  & 0,04  &   1      \\
+               Rockingscan $2\theta = \SI{0}{\degree}$  & -1° bis 1°  & 0,04°  &   1      \\
+               z-Scan  & -0,5 bis 0,5  & 0,02  &   1      \\
+               Rockingscan $2\theta = \SI{0.3}{\degree}$  & 0° bis 0,3°  & 0,005°  &   1      \\
+               z-Scan $2\theta = \SI{0.3}{\degree}$  & -0,5 bis 0,5  & 0,02  &   1      \\
+               Reflektivitätsscan  & 0° bis 2,5°  & 0,005°  &   5      \\
+    
+              \bottomrule
+            \end{tabular}
+        \end{table}
+    \subsection{Refelektionsmessung}
+        Nach der Justierung der Apparatur wird die eigentliche Messung durchgeführt.
+        Bei der Messung werden der Ein- und Ausfallswinkel konstant gehalten und es wird über verschiedene Werte von $2\theta$ die Intensität gemessen.
+        Da außerdem ein Hintergrund durch diffuse Streuung entsteht wird diese seperat vermessen.
+        Dazu wird der Ausfallswinkel um \SI{1}{\degree} vom Einfallswinkel variiert und die Messung mit den gleichen Parametern wiederholt.
