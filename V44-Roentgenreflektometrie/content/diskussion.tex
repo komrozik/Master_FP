@@ -1,14 +1,43 @@
 \newpage
 \section{Diskussion}
 \label{sec:diskussion}
-    In der Graphen zum Linearverstärker sind eindeutig die zu erwartenden Geraden zu sehen. Das Ausscheren einiger Messwerte ist mit einer Vielzahl von Umgebungseinflüssen zu erklären, wie z.B. nicht beachteter Innenwiderstände mancher Bauelemente.
+    Um die endgültige Bestimmung der Parameter des benutzten Polysterol-Silizium-Schichtsystems durchführen zu können, mussten die Eigenschaften des verwendeten Röntgenstrahls und der Geometrie des Aufbaus in Betracht gezogen und bestimmt werden.
 
-    Anhand der Bilder vom Oszilloskop ist zu erkennen, dass der Umkehr-Integrator wie erwartet die eingehenden Signale integriert und die entsprechenden Signale ausgibt, die Dreieckspannung wird zur Rechteckspannung usw.
-    Für den invertierenden-Differenzierer gilt das gleiche, auch dabei werden die erwarteten Ausgangssignale erkennbar.
-    Am besten ist diese Eigenschaft bei dem Ausgangssignal der Rechteckspannung zu sehen, da dabei immer dort spitze Peaks auftreten, wo die Spannung von einem Wert zu anderen springt.
+    Der Geometriewinkel ab dem nur noch ein Teil des Strahls die Probe trifft wurde auf zwei verschiedene Weisen bestimmt.
+    Beide Werte liegen nah beieinander und so wird einfach ihr Mittelwert $\overline{\alpha_{\mathrm{geo}}} = 0,6108$ in den weiteren Rechnungen zum Geometriefaktor genutzt. \\
+    Im Gegensatz zur Kurve in \autoref{fig:Reflektivitaetskurve1} ist bei der Kurve in \autoref{fig:Reflektivitaetskurve2} ein deutliches Plateau bis zum kritschen Winkel der Totalreflektion zu sehen, wo die Reflektivität gleich eins ist. Das ist ein Indiz dafür, dass die Korrektur der Messwerte mithilfe des Geometriefaktors gelungen ist.
 
-    Die Proportionalität der Ausgangsspannung zur Frequenz ist in den Graphen jedoch nur ansatzweise erkennbar.
-    Diese Tendenzen sind auch nur bei tiefen Frequenzen zu erkennen da der Operationsverstärker in seinem Aufbau einem Tiefpass ähnelt.
-    Der Trend des Graphen des Integrators zeigt nach unten, was der Proportionalität $\propto 1 / \nu$ entspricht und der Trend des Graphen des Differentiators zeigt nach oben, was wiederrum der Proportionalität $\propto \nu$ darstellt.
+    Anschließend wurde der Parratt-Algorithmus für raue Grenzflächen verwendet, um eine Theoriekurve an die gemessene korrigierte Reflektivitätskurve anzupassen.
+    Die Parameter wurden händisch so gewählt, dass die Kiessig-Oszillationen im Bereich $0,4°$ bis $0,9°$ möglichst gut mit der Theoriekurve übereinstimmen.
+    Zum Vergleich wurden in demselben ungefähren Bereich die Maxima dazu benutzt die Schichtdicke der Polysterol-Schicht zu bestimmen.
+    Die beiden somit erhaltenen Schichtdicken stimmen nicht ganz überein.
+    Dies könnte daran liegen, dass bei der Methode mit den Maxima nur eindeutig erkennbaren Maxima benutzt wurden und die Oszillationen in anderen Bereichen etwas andere Abstände besitzen.
+    \begin{align*}
+        d &= (830 \pm 24) \; \text{\AA} \\
+        d_{\mathrm{p}} &= 860 \; \text{\AA}
+    \end{align*}
+    Eine andere Ursache könnte sein, dass die händische Anpassung der Parameter im Parratt-Algorithmus einfach nicht so gut gelungen ist.
+    
+    Es folgt eine kurze Beschreibung der groben Veränderungen, die eine Variation der einzelnen Parameter mit sich bringt: \\
+    Die Schichtdicke $d_{\mathrm{p}}$ ist für die Stauchung und Streckung entlang der x-Achse zuständig.
+    Die Variationen der Dispersion von Polysterol $\delta_2$ und der Rauheit der Grenzfläche zwischen Vakuum und Polysterol $\sigma_1$ bewirken jeweils eine Stauchung und Streckung entlang der y-Achse.
+    Die Veränderung der Dispersion von Silizium $\delta_3$ bewirkt eine Verschiebung entlang der x-Achse.
+    Mit der Rauheit der Grenzfläche zwischen Polysterol und Silizium $\sigma_2$ wird die Krümmung der Kurve beschrieben.
 
-    Ein fehlerhafter Operationsverstärker und ein paar andere Faktoren haben den Aufbau des Versuches zeitaufwendig werden lassen, weshalb nur die Aufgaben bis zu den Schmitt-Triggern bearbeitet werden konnten.
+    Weiterhin werden die mit dem Parratt-Algorithmus erhaltenen Dispersionen für Polysterol und Silizium mit ihren Literaturwerten verglichen.
+    \begin{align*}
+        \delta_2 &= 1,0 \cdot 10^{-6} & \delta_{\mathrm{PS,lit}} &= 3,5 \cdot 10^{-6} & a_{\delta_2} &\approx 72\;\%\\
+        \delta_3 &= 7,0 \cdot 10^{-6} & \delta_{\mathrm{SI,lit}} &= 7,6 \cdot 10^{-6} & a_{\delta_3} &\approx 7,9\;\%
+    \end{align*}
+    Die daraus berechneten kritischen Winkel weisen ungefähr das gleiche Verhältnis zwischen den relativen Abweichungen zu den Literaturwerten auf:
+    \begin{align*}
+        \alpha_{\mathrm{c,PS}} &= 0,0810° & \alpha_{\mathrm{c,PS,lit}} &= 0,153° & a_{\alpha_{\mathrm{c,PS}}} &\approx 47\;\%\\
+        \alpha_{\mathrm{c,Si}} &= 0,2144° & \alpha_{\mathrm{c,Si,lit}} &= 0,223° & a_{\alpha_{\mathrm{c,Si}}} &\approx 3,7\;\%
+    \end{align*}
+
+    Es gibt keine Literaturwerte für die Rauheiten. Da die Disperionen in den richtigen Größenordnungen sind, lässt sich zu den Rauheiten nur sagen, dass die erhaltenen Rauheiten eine grobe Abschätzung der tatsächlichen Rauheiten der beiden Grenzflächen sind.
+    \begin{align*}
+        \sigma_1 &= 8,0 \cdot 10^{-10} \frac{1}{\text{\AA}}\\[2pt]
+        \sigma_2 &= 6,8 \cdot 10^{-10} \frac{1}{\text{\AA}}
+    \end{align*}
+

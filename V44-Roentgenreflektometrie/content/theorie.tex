@@ -44,6 +44,7 @@
         \end{align}
         Daher ergibt sich das Verhältnis der Intensitäten, die sogenannte Fresnel-Reflektivität zu 
         \begin{equation}
+            \label{eqn:fresnel}
             R_F = |r|^2 = \frac{\left(\alpha_i - p_+\right)^2 + p_-^2}{\left(\alpha_i + p_+\right)^2 + p_-^2}
         \end{equation}
         mit
@@ -85,6 +86,7 @@
         \end{figure}
         Der Parrat-Algorithmus ist ein rekursiver Algorithmus zum berechnen des Verhaltnisses der reflektierten und transmittierten Welle an der j-ten Grenzschicht.
         \begin{align}
+            \label{eqn:parratt}
             X_j = \frac{j}{T_j} = e^{-2ik_{z,j}z_j} \frac{r_{j,j+1} + X_{j+1} e^{-2ik_{z,j+1}z_j}}{1 + r_{j,j+1}X_{j+1} e^{-2ik_{z,j+1}z_j}}\\
             r_{j,j+1} = \frac{k_{z,j} - k_{z,j+1}}{k_{z,j} + k_{z,j+1}}
         \end{align}
@@ -98,6 +100,7 @@
         Dabei ist $P_j(z)$ die Wahrscheinlichkeit, dass die j-te Grenzfläche im Intervall $[z_j+z,z_j+z+\text{d}z]$ liegt.
         Beim Parrat Algorithmus werden dazu die Fresnelkoeffizienten modifiziert
         \begin{align}
+            \label{eqn:rauheit}
             \tilde{r}_{j,j+1} = r_{j,j+1} e^{-2k_{z,j}k_{z,j+1} \sigma_j^2}\\
             \tilde{t}_{j,j+1} = t_{j,j+1} e^{ \frac{1}{2} \left(k_{z,j} -k_{z,j+1}\right)\sigma_j^2}
         \end{align}
