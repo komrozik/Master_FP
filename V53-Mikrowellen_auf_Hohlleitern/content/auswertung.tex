@@ -1,3 +1,167 @@
 \newpage
 \section{Auswertung}
 \label{sec:auswertung}
+\subsection{Untersuchung dreier Moden auf dem Oszilloskop}
+    Es wurden jeweils pro Modus drei Messwerte aufgenommen.
+    Dabei ist $V_0$ die Reflektorspannung beim Maximum des Modus, $V_1$ und $V_2$ die linke und rechte Nullstelle des Modus, $A_0$ die Amplitude am Maximum und $f$ die zugehörige Resonanzfrequenz des Modus.
+    \begin{table}[h!]
+        \centering
+        \begin{tabular}{c c c c c c} 
+            \toprule
+            Modus & $V_0\;$[V] & $V_1\;$[V] & $V_2\;$[V] & $A_0$ & $f\;$[GHz] \\ [0.5ex] 
+            \midrule
+            1. & 220 & 205 & 230 & 1,08 & 9000 \\ 
+            2. & 140 & 122 & 150 & 1,24 & 9004 \\
+            3. & 85 & 70 & 92 & 0,96 & 9010 \\
+            \bottomrule \\
+        \end{tabular}
+        \caption{Hier sind die Messwerte der drei Moden angegeben.}
+        \label{tab:3moden}
+    \end{table}
+    Durch die drei Messwerten lassen sich eindeutig bestimmte quadratische Funktionen der Form $f(U) = a \cdot U^2 + b \cdot U + c$ legen.
+    Es ergeben sich die drei Parabeln wie in \autoref{fig:3moden} zu erkennen mit den folgenden Parametern:
+    \begin{align*}
+        a_1 &= -9,1 \cdot 10^{-3} \;\mathrm{V}^{-2} & a_2 &= -6,9 \cdot 10^{-3} \;\mathrm{V}^{-2} & a_3 &= -7,2 \cdot 10^{-3} \;\mathrm{V}^{-2} \\
+        b_1 &= 1,5 \;\mathrm{V}^{-1} & b_2 &= 1,9 \;\mathrm{V}^{-1} & b_3 &= 3,1 \;\mathrm{V}^{-1} \\
+        c_1 &= -5,9 \cdot 10^{1} \;\mathrm{V} & c_2 &= -1,3 \cdot 10^{2} \;\mathrm{V} & c_3 &= -3,4 \cdot 10^{2} \;\mathrm{V}
+    \end{align*}
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width = 0.85\textwidth]{plots/3moden.pdf}
+        \vspace{-10pt}
+        \caption{Die Reflektorspannung ist gegen die Leistung aufgetragen und es sind drei Moden zu sehen, durch die Parabeln gelegt worden sind.}
+        \label{fig:3moden}
+    \end{figure}
+    \FloatBarrier
+
+    Im Anschluss werden die elektronischen Bandbreiten nach $B = f_2' - f_1'$ und die Abstimm-Empfindlichkeiten nach $E = \frac{f_2' - f_1'}{V_2' - V_1'}$ mithilfe der aufgenommenen Messwerte bei halber Leistung bestimmt und in \autoref{tab:bandbreite} eingetragen.
+    \begin{table}[h!]
+        \centering
+        \begin{tabular}{c c c c c c c} 
+            \toprule
+            Modus & $V_1'\;$[V] & $V_2'\;$[V] & $f_1'\;$[MHz] & $f_2'\;$[MHz] & $B\;$[MHz] & $E\;$[MHz$\;\mathrm{V}^{-1}$] \\ [0.5ex] 
+            \midrule
+            1. & 210\pm5 & 239\pm5 & 8985\pm4 & 9018\pm4 & 33\pm6 & 1,1\pm0,4 \\ 
+            2. & 129\pm5 & 148\pm5 & 8978\pm4 & 9030\pm4 & 52\pm6 & 2,7\pm1,1\\
+            3. & 78\pm5 & 90\pm5 & 8982\pm4 & 9038\pm4 & 56\pm6 & 4,7\pm2,8\\
+            \bottomrule \\
+        \end{tabular}
+        \caption{Die elektronischen Bandbreiten und Abstimm-Empfindlichkeiten als auch die für deren Berechnung nötigen Werte sind hier dargestellt.}
+        \label{tab:bandbreite}
+    \end{table}
+    
+\subsection{Untersuchung von Frequenz, Wellenlänge}
+\label{sec:wellenlaenge}
+    Die Resonanzfrequenz im Hohlleiter soll nun genauer bestimmt werden.
+    Zum Einen wird ähnlich zur Frequenzmessung im 1. Teil des Versuches verfahren.
+    Das Oszilloskop wird hier durch ein SWR-Meter ersetzt, welches viel empfindlicher als ein Oszilloskop ist, was die Frequenzmessung viel präziser werden lässt.
+    \begin{equation*}
+        f = (8996 \pm 0,5) \; \mathrm{MHz}
+    \end{equation*}
+
+    Für eine weitere Methode zur Bestimmung der Frequenz wird zuerst die Wellenlänge ausgemessen.
+    Dazu wird die Position dreier Maxima gemessen, über den Abstand zwischen zwei Nachbarsmaxima gemittelt und somit die halbe Wellenlänge im Hohleiter bestimmt. Die Unsicherheiten werden an der Skala de Nonius abgelesen.
+    \begin{align*}
+        \begin{aligned}
+            x_1 &= (43,4 \pm 0,1)\;\mathrm{mm} \\
+            x_2 &= (66,9 \pm 0,1)\;\mathrm{mm} \\
+            x_3 &= (92,3 \pm 0,1)\;\mathrm{mm}
+        \end{aligned}
+        && \Rightarrow && 
+        \begin{aligned}
+            \lambda_g &= 2 \cdot \frac{\Delta x_{12} + \Delta x_{23}}{2} \\
+            &= (48,9 \pm 0,2)\; \mathrm{mm}
+        \end{aligned}
+    \end{align*}
+    Damit ist es möglich über \autoref{eqn:frequenz} die Frequenz zu berechnen, wobei für die Breite des Hohlleiters $a = (22,860 \pm 0,046) \;$mm gilt.
+    \begin{equation*}
+        f_{\lambda} = (8983 \pm 20) \; \mathrm{MHz}
+    \end{equation*}
+
+\subsection{Bestimmung der Dämpfungskurve}
+    Die vom Hersteller gegebene Eichkurve auf dem Dämpfungsglied soll mithilfe des SWR-Meters überprüft werden. Dazu wird der Abschluss aus der vorherigen Messung durch einen Kurzschluss ersetzt. So bilden sich keine stehenden Wellen aus. Unter diesen Bedingungen gibt die Eichkurve das Verhältnis in dB zwischen der Leistung, wenn das Dämpfungsglied ausgeschaltet wäre und der Leistung bei eingeschaltetem Dämfpungsglied.
+    \begin{table}[h!]
+        \centering
+        \begin{tabular}{>{\centering}p{3cm} >{\centering}p{3cm} >{\centering}p{3cm}} 
+            \toprule
+            SWR-Meter Ausschlag [dB] & Mikrometer-einstellung [mm] & Dämpfung aus Eichkurve [dB] \tabularnewline [0.5ex] 
+            \midrule
+            2 & 1,085 \pm 0,01 & 2,7 \pm 1 \tabularnewline 
+            4 & 1,475 \pm 0,01 & 4,2 \pm 1 \tabularnewline
+            6 & 1,780 \pm 0,01 & 6,5 \pm 1 \tabularnewline
+            8 & 2,040 \pm 0,01 & 9,0 \pm 1 \tabularnewline
+            10 & 2,250 \pm 0,01 & 10,5 \pm 1 \tabularnewline
+            \bottomrule \tabularnewline
+        \end{tabular}
+        \caption{Hier sind die gemessenen Dämpfungen an den zugehörigen Mikrometereinstellungen, als auch die aus der Eichkurve entnommenen Werte eingetragen.}
+        \label{tab:daempfung}
+    \end{table}
+
+    Um die Werte leichter vergleichen zu können wird jeweils ein exponentieller Fit der Form $f(x) = a \cdot \exp(b x) + c$ an den Daten durchgeführt.
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width = 0.9\textwidth]{plots/daempfung.pdf}
+        \vspace{-5pt}
+        \caption{Zum Vergleich der Eichkurve des Herstellers auf dem Dämpfungsglied und den gemessenen Werten wurden Exponentialfunktionsn an die Daten angepasst.}
+        \label{fig:daempfung}
+    \end{figure}
+    \FloatBarrier
+
+\subsection{Untersuchung der Stehwellen}
+    In diesem Abschnitt wird das Stehwellenverhältnis $S$ (oder kurz SWR), also das Verhältnis der Maxima zu den Minima der stehenden Wellen, auf drei verschiedene Weisen bestimmt.
+    \subsubsection*{Direkte / SWR-Meter Methode}
+        Die Sonde wird in ein Maximum verschoben und die Verstärkung des SWR-Meters auf $1,0$ eingestellt. Nun wird die Sonde in ein Minimum verschoben und das Stehwellenverhältnis wird direkt abgelesen. Diese Messung wird bei verschiedenen Eindringtiefen der Sonde durchgeführt.
+        Die Unsicherheiten stammen aus der Skala des SWR-Meters.
+        \begin{table}[h!]
+            \centering
+            \begin{tabular}{>{\centering}p{3cm} c} 
+                \toprule
+                Eindringtiefe $d\;$[mm] & $S$ \tabularnewline [0.5ex] 
+                \midrule
+                3 & 1,13 \pm 0,01 \tabularnewline 
+                5 & 1,56 \pm 0,025 \tabularnewline
+                7 & 3,25 \pm 0,25 \tabularnewline
+                9 & \infty \tabularnewline
+                \bottomrule \tabularnewline
+            \end{tabular}
+            \caption{Die mit der direkten Methode bestimmten SWR sind hier eingetragen.}
+            \label{tab:direkteMethode}
+        \end{table}
+        \FloatBarrier
+        Das SWR bei einer Eindringtiefe von \SI{9}{mm} ist so groß, dass es nicht mehr auf die Skala des SWR-Meters passt und so nicht mit der dirketen Methode bestimmt werden kann.
+
+    \subsubsection*{3 db-Methode}
+        Mit dieser Methode lassen sich auch größere SWR bestimmen.
+        Die Sonde mit einer Eindringtiefe von \SI{9}{mm} wird also in ein Minimum gefahren und von dort aus einmal nach links und rechts verschoben, sodass die Dämpfung am SWR-Meter sich um \SI{3}{dB} ändert.
+        Mithilfe der beiden so gewonnenen Positionen bzw. ihrem Abstand voneinander wird die SWR bestimmt nach \autoref{eqn:SWR}.
+        \begin{align*}
+            \begin{aligned}
+                d_1 &= (91,2 \pm 0,05)\;\mathrm{mm} \\
+                d_2 &= (92,9 \pm 0,05)\;\mathrm{mm}
+            \end{aligned}
+            && \Rightarrow && 
+            \begin{aligned}
+                S_{\mathrm{3dB}} &= 9.23 \pm 0.38
+            \end{aligned}
+        \end{align*}
+        Dabei wird von der in \autoref{sec:wellenlaenge} bestimmten Wellenlänge im Hohlleiter $\lambda_g = (48,9 \pm 0,2)\; \mathrm{mm}$ Gebrauch gemacht.
+
+    \subsubsection*{Abschwächer-Methode}
+        Diese Methode eignet sich wie die 3 dB-Methode, um größere SWR zu berechnen, da hier das Dämpfungsglied kontinuirlich so verändert wird, dass der Ausschlag des SWR-Meters auf der Skala bleibt.
+        $A_1$ ist die anfangs eingestellte Dämpfung, wobei die Sonde in einem Maximum liegt und $A_2$ ist die eingestellte Dämpfung, sodass der Ausschlag des SWR-Meters bei der Sonde im nächstgelegenen Minimum dem Ausschlag beim Maximum gleicht.
+        Die Werte wurden bei einer Sondentiefe von \SI{9}{mm} gemessen.
+        \begin{align*}
+            \begin{aligned}
+                A_1 &= 20 \; \mathrm{dB} \\
+                A_2 &= 42 \; \mathrm{dB}
+            \end{aligned}
+            && \Rightarrow && 
+            \begin{aligned}
+                S_{\mathrm{schw}} &= 10^{\frac{A_2 - A_1}{20}} = 12,59
+            \end{aligned}
+        \end{align*}
+    
+
+
+
+
