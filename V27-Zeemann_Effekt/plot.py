@@ -8,6 +8,7 @@ import pandas as pd
 from scipy.optimize import curve_fit
 import uncertainties.unumpy as unp
 from uncertainties.unumpy import (nominal_values as noms, std_devs as stds)
+from uncertainties import ufloat
 import scipy.constants as const
 
 B,I = np.genfromtxt('data/data1.txt'
@@ -86,11 +87,12 @@ plt.close()
 
 
 
-df1 = pd.read_csv('data/data_rot_senkrecht.txt'
+df1 = pd.read_csv('data/data_blau_senkrecht.txt'
                  ,header =[1])
-df2 = pd.read_csv('data/data_blau_senkrecht.txt'
+df2 = pd.read_csv('data/data_rot_senkrecht.txt'
                  ,header =[1])
-
+df3 = pd.read_csv('data/data_blau_parallel.txt'
+                 ,header =[1])
 
 def delta_lambda(lam,n,d):
     """Caculates the Dispersion area from the thickness, the wavelength and the difraction index
@@ -135,7 +137,7 @@ def add_del_lambda(df,lam,n):
     return df
 
 def get_landre(del_lam,B,lam):
-    """Adds the Dispersion region to the given data frame.
+    """Calculates the landre factor.
 
         Parameters
         ----------
@@ -155,13 +157,29 @@ def get_landre(del_lam,B,lam):
     g = del_lam*(const.h*const.c)/(const.physical_constants['Bohr magneton'][0]*B*lam**2)
     return g
 
+B_feld = f(7.8,*params1)*10**(-3)
+
 df1 = add_del_lambda(df1,6.438*10**(-7),1.4567)
 del_lambda1 = df1['del_lambda'].mean(axis = 0)
-g1 = get_landre(del_lambda1,0.6194,6.438*10**(-7))
+del_lambda1_err = 1/np.sqrt(len(df1['del_lambda_err']))*np.sqrt(sum(df1['del_lambda_err']**2))
+del_lambda1_unc = ufloat(del_lambda1, del_lambda1_err)
+
+g1 = get_landre(del_lambda1_unc,B_feld,6.438*10**(-7))
 
 df2 = add_del_lambda(df2,4.8*10**(-7),1.4635)
 del_lambda2 = df2['del_lambda'].mean(axis = 0)
-g2 = get_landre(del_lambda2,1.0594 ,4.8*10**(-7))
+del_lambda2_err = 1/np.sqrt(len(df2['del_lambda_err']))*np.sqrt(sum(df2['del_lambda_err']**2))
+del_lambda2_unc = ufloat(del_lambda2, del_lambda2_err)
 
-print(f"Für das rote Licht: g = {g1}")
-print(f"Für das blaue Licht: g = {g2}")
+g2 = get_landre(del_lambda2_unc,B_feld,4.8*10**(-7))
+
+df3 = add_del_lambda(df3,6.438*10**(-7),1.4567)
+del_lambda3 = df3['del_lambda'].mean(axis = 0)
+del_lambda3_err = 1/np.sqrt(len(df3['del_lambda_err']))*np.sqrt(sum(df3['del_lambda_err']**2))
+del_lambda3_unc = ufloat(del_lambda3, del_lambda3_err)
+
+g3 = get_landre(del_lambda3_unc,1,6.438*10**(-7))
+
+print(f"Für das blaue senkrecht Licht: del = {del_lambda1_unc} g = {g1}")
+print(f"Für das blaue parallel Licht: del = {del_lambda3_unc} g = {g3}")
+print(f"Für das rote Licht: del = {del_lambda2_unc} g = {g2}")
