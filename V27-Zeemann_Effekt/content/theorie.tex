@@ -35,13 +35,12 @@
         \begin{equation}
             E = E_n + \frac{a}{2} \bigl[j(j+1) - l(l+1) - s(s+1)\bigr] \qquad \text{mit} \quad a = \frac{\mu_0 Z e^2 \hbar^2}{8 \pi m_e^2 r^3} \;.
         \end{equation}
-        Durch das Einführen des Gesamtdrehimpulses wird eine andere Notation praktischer, das sogenannte Termschema:
         \begin{equation}
             \label{eqn:termschema}
-            ^{2S+1}L_J
+            ^{2s+1}l_j
         \end{equation}
-        Hierbei steht das $L$ für den Bahndrehimpuls S($l=0$), P($l=1$), D($l=2$) usw., das $S = \frac{1}{2}$ für den Spin und das $J$ für den Gesamtdrehimpuls des Elektrons.
-        Der Gesamtdrehimpuls wird nach den Regeln der Drehimpulsaddition in dem Bereich von $|L - S|$ bis $|L + S|$ berechnet.
+        Hierbei steht das $\vec{l}$ für den Bahndrehimpuls s($l=0$), p($l=1$), p($l=2$) usw., das $\vec{s}$ für den Spin $s = \pm \frac{1}{2}$ und das $\vec{j}$ für den Gesamtdrehimpuls des einzelnen Elektrons.
+        Der Gesamtdrehimpuls wird nach den Regeln der Drehimpulsaddition in dem Bereich von $|l - s|$ bis $|l + s|$ berechnet.
         Die Hauptquantenzahl $n$ wird nicht mehr explizit dazugeschrieben.
 
     \subsection{Mehrelektronen Atome}
@@ -69,7 +68,12 @@
             zusammen.
             Diese Drehimpulse verhalten sich analog zu denen eines einzelnen Elektrons in der Abwesenheit starker Magnetfelder.
             Die beiden Drehimpulse addieren sich zu einem Gesamtdrehimpuls $\vec{J} = \vec{L} + \vec{S}$, welcher genauso behandelt werden kann wie $\vec{j}$ in wasserstoffähnlichen Atomen.
-            Das heißt auch, dass das Termschema aus \autoref{eqn:termschema} verwendet werden kann, wenn für die Drehimpulse des einzelnen Elektrons die kollektiven Gesamtdrehimpulsen eingesetzt werden.
+            Durch das Einführen des Gesamtdrehimpulses mehrerer Elektronen wird eine andere Notation praktischer, das sogenannte Termschema:
+            \begin{equation}
+                ^{2S+1}L_J
+            \end{equation}
+            Die Größen $L$, $S$ und $J$ verhalten sich dabei analog zu den Größen des einzelnen Elektrons in \autoref{eqn:termschema}.
+            Die Energie ohne angelegtes B-Feld ist in der magnetischen Quantenzahl $m_J = -L, -L+1 ..., L$ $(2L+1)$-fach entartet, die eine Richtungsquantelung für $J$ vorgibt, da die Energie nicht von der Richtung, sondern nur vom Betrag des Gesamtdrehimpulses abhängt.
 
             In diesem Versuch wird diese Art der Kopplung verwendet, da sie gut zum beobachteten Spektrum der Cadmium Atome passt.
 
@@ -115,7 +119,7 @@
 
     \subsection{Auswahlregeln}
     \label{sec:auswahlregeln}
-        Ist die Entartung der Energieniveaus in $m$ aufgrund eines äußeren Magnetfeldes aufgehoben, so sind nur energetische Übergänge möglich, die bestimmte Auswahlregeln befolgen.
+        Ist die Entartung der Energieniveaus in $m_J$ aufgrund eines äußeren Magnetfeldes aufgehoben, so sind nur energetische Übergänge möglich, die bestimmte Auswahlregeln befolgen.
         Die Anregung eines Atoms kann also nur passieren, wenn das absorbierte Licht die Auswahlregeln erfüllt.
 
         Nach einer Anregung relaxieren die Elektronen nach einer zufälligen Zeit wieder in ihren Grundzustand.
@@ -126,13 +130,13 @@
         \begin{itemize}
             \item $\Delta J = \pm 1$
             \item $\Delta m_J = 0 \qquad$ linear pol. Licht / $\pi -$Licht
-            \item $\Delta m_J = -1 \qquad$ rechtspol. Licht / $\sigma^- -$Licht
-            \item $\Delta m_J = +1 \qquad$ linkspol. Licht / $\sigma^+ -$Licht
+            \item $\Delta m_J = -1 \qquad$ rechtszirkularpol. Licht / $\sigma^- -$Licht
+            \item $\Delta m_J = +1 \qquad$ linkszirkularpol. Licht / $\sigma^+ -$Licht
         \end{itemize}
 
         \subsubsection*{Normaler Zeemann Effekt in Cadmium}
             Wenn ein äußeres Magnetfeld angelegt ist, spalten sich die Zustände $^1\text{D}_2$ und $^1\text{P}_1$ anhand des normalen Zeemann Effektes auf.
-            Der Übergang $^1\text{D}_2 \rightarrow ^1\text{P}_1$ mit der Wellenlänge $\lambda = \SI{643,8}{nm}$ muss deshalb die obengenannten Auswahlregeln erfüllen.
+            Der Übergang $^1\text{D}_2 \rightarrow ^1\text{P}_1$ mit der Wellenlänge $\lambda = \SI{643,8}{nm}$ muss deshalb die oben genannten Auswahlregeln erfüllen.
             \begin{figure}[h]
                 \center
                 \includegraphics[width=0.35\textwidth]{bilder/normalerZeemann.jpeg}
