@@ -1,6 +1,6 @@
 # Fdb version 3
-["pdflatex"] 1639228871 "/Users/davidgutnikov/Documents/Projects/Master_FP/V27-Zeemann_Effekt/main.tex" "main.pdf" "main" 1639228871
-  "/Users/davidgutnikov/Documents/Projects/Master_FP/V27-Zeemann_Effekt/main.tex" 1639226987 942 3011e27f1d7ef6d01a44a48a6d0848a5 ""
+["pdflatex"] 1645003395 "/Users/davidgutnikov/Documents/Projects/Master_FP/V27-Zeemann_Effekt/main.tex" "main.pdf" "main" 1645003395
+  "/Users/davidgutnikov/Documents/Projects/Master_FP/V27-Zeemann_Effekt/main.tex" 1642684408 934 926df5f21438c591171e3926c6ac7c15 ""
   "/usr/local/texlive/2021/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmr10.tfm" 1136768653 1296 45809c5a464d5f32c8f98ba97c1bb47f ""
   "/usr/local/texlive/2021/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty" 1576625341 40635 c40361e206be584d448876bba8a64a3b ""
@@ -46,8 +46,8 @@
   "/usr/local/texlive/2021/texmf-var/web2c/pdftex/pdflatex.fmt" 1635025326 2805612 554715f1d17b3042486590430d724c25 ""
   "/usr/local/texlive/2021/texmf.cnf" 1616695596 577 4c1911a7228e554c6032256d3cf5567d ""
   "header.tex" 1638483851 3677 58be4e219dbc2dd0aae6c9bdb29bda6e ""
-  "main.aux" 1639228871 32 3985256e7290058c681f74d7a3565a19 ""
-  "main.tex" 1639226987 942 3011e27f1d7ef6d01a44a48a6d0848a5 ""
+  "main.aux" 1645003395 32 3985256e7290058c681f74d7a3565a19 ""
+  "main.tex" 1642684408 934 926df5f21438c591171e3926c6ac7c15 ""
   (generated)
-  "main.pdf"
   "main.log"
+  "main.pdf"
