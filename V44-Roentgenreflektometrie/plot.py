@@ -126,7 +126,7 @@ plt.axvline(0.015, 0, 10**6,
             linestyle='--',
             linewidth=1.5,
             alpha=0.6,
-            label=r'Strahlbreite $d$}'
+            label=r'Strahlbreite $d$'
             )
 plt.axvline(0.225, 0, 10**6,
             color='gray',

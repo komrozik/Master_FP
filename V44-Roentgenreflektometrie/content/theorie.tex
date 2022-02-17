@@ -68,7 +68,7 @@
         \begin{figure}[ht]
             \centering
             \includegraphics[width = 0.8\textwidth]{bilder/Oszillation.png}
-            \caption{Die Intensitätsverteilung mit den Kiessing Oszillationen.}
+            \caption{Fresnel-Reflektivität in Abhängigkeit vom Einfallswinkel einer Polystyrolschicht auf einem Siliziumwafer. Im vergrößerten Bereich für kleine $\alpha$ sind die kritischen Winkel $\alpha_{c,Si}$ und $\alpha_{c,PS}$ für die Silizium-Schicht und die Polysteren-Schicht klar erkennbar da an diesen Stellen die Reflektivität stark abfällt. Im großen Diagramm sind die Kiessig Oszillationen erkennbar.Entnommen aus \cite{tolan}.}
             \label{fig:oszillation}
         \end{figure}
         Wenn die Ordnungszahl $m$ und der Winkel $\alpha_i$ für zwei Minima bekannt ist kann die Schichtdicke und die Dispersion und damit der Brechungsindex bestimmt werden.
@@ -76,19 +76,19 @@
             \delta = \frac{1}{2} \frac{\alpha_{i,1}^2 m_2^2 - \alpha_{i,2}^2 m_1^2}{m_2^2 -m_1^2}\\
             d = \frac{\lambda}{2\Delta\alpha_i}
         \end{align}
-    \subsection{Parrat-Algorithmus}
-        Im falle eines Mehrschichtensystems, siehe Abbildung \ref{fig:mehrschicht}, muss der sogenannte Parrat-Algorithmus verwendet werden um das System zu beschreiben.
+    \subsection{Parratt-Algorithmus}
+        Im falle eines Mehrschichtensystems, siehe Abbildung \ref{fig:mehrschicht}, muss der sogenannte Parratt-Algorithmus verwendet werden um das System zu beschreiben.
         \begin{figure}[ht]
             \centering
             \includegraphics[width = 0.8\textwidth]{bilder/Mehrschichtsystem.png}
-            \caption{Ein Mehrschichtsystem mit $N+1$ Schichten, an jeder Schicht kann Reflektivität und Transmission rekursiv berechnet werden.}
+            \caption{Ein Mehrschichtsystem mit $N+1$ Schichten, an jeder Schicht kann Reflektivität und Transmission rekursiv berechnet werden.Entnommen aus \cite{tu_dortmund_versuchsanleitung_2021_e1}.}
             \label{fig:mehrschicht}
         \end{figure}
-        Der Parrat-Algorithmus ist ein rekursiver Algorithmus zum berechnen des Verhaltnisses der reflektierten und transmittierten Welle an der j-ten Grenzschicht.
+        Der Parratt-Algorithmus ist ein rekursiver Algorithmus zum berechnen des Verhaltnisses der reflektierten und transmittierten Welle an der j-ten Grenzschicht.
         \begin{align}
             \label{eqn:parratt}
-            X_j = \frac{j}{T_j} = e^{-2ik_{z,j}z_j} \frac{r_{j,j+1} + X_{j+1} e^{-2ik_{z,j+1}z_j}}{1 + r_{j,j+1}X_{j+1} e^{-2ik_{z,j+1}z_j}}\\
-            r_{j,j+1} = \frac{k_{z,j} - k_{z,j+1}}{k_{z,j} + k_{z,j+1}}
+            X_j &= \frac{j}{T_j} = e^{-2ik_{z,j}z_j} \frac{r_{j,j+1} + X_{j+1} e^{-2ik_{z,j+1}z_j}}{1 + r_{j,j+1}X_{j+1} e^{-2ik_{z,j+1}z_j}}\\
+            r_{j,j+1} &= \frac{k_{z,j} - k_{z,j+1}}{k_{z,j} + k_{z,j+1}}
         \end{align}
         wobei $r_{j,j+1}$ die Fresnelaktivität der j-ten Grenzfläche ist.
     \subsection{Rauigkeit}
@@ -98,7 +98,7 @@
             \sigma_j^2 = \int \left(z-z_j\right)^2\cdot P_j(z) \text{d}z        
         \end{equation}
         Dabei ist $P_j(z)$ die Wahrscheinlichkeit, dass die j-te Grenzfläche im Intervall $[z_j+z,z_j+z+\text{d}z]$ liegt.
-        Beim Parrat Algorithmus werden dazu die Fresnelkoeffizienten modifiziert
+        Beim Parratt Algorithmus werden dazu die Fresnelkoeffizienten modifiziert
         \begin{align}
             \label{eqn:rauheit}
             \tilde{r}_{j,j+1} = r_{j,j+1} e^{-2k_{z,j}k_{z,j+1} \sigma_j^2}\\
