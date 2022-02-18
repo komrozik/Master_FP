@@ -23,8 +23,6 @@ A_3moden = ([0, 0.96, 0, 0, 1.24, 0, 0, 1.08, 0])
 params_1,cov = curve_fit(f, V_3moden[0:3], A_3moden[0:3])
 params_2,cov = curve_fit(f, V_3moden[3:6], A_3moden[3:6])
 params_3,cov = curve_fit(f, V_3moden[6:9], A_3moden[6:9])
-# errors_3 = np.sqrt(np.diag(cov))
-# params_3_err = unp.uarray(params_2, errors_2)
 
 for name, param in zip(('a_1', 'b_1', 'c_1'), params_1):
     print(r'{0}:  {1:.4f}'.format(name, param))
@@ -88,8 +86,8 @@ plt.savefig('plots/3moden.pdf')
 plt.close()
 
 ### Elektronische Bandbreiten und Abstimm-Empfindlichkeiten berechnen
-f_1 = unp.uarray([8985, 8978, 8982], [4, 4, 4])
-f_2 = unp.uarray([9018, 9030, 9038], [4, 4, 4])
+f_1 = unp.uarray([8985, 8978, 8982], [4, 4, 4]) *10**6
+f_2 = unp.uarray([9018, 9030, 9038], [4, 4, 4]) *10**6
 B = f_2 - f_1
 
 V_1 = unp.uarray([210, 129, 78], [5, 5, 5])
@@ -98,10 +96,29 @@ E = B / (V_2 - V_1)
 
 print('')
 for name, b in zip(('1. ', '2. ', '3. '), B):
-    print(r'{0}Bandbreiten:  {1:.2f}'.format(name, b))
+    print(r'{0}Bandbreiten:  {1:.2e}'.format(name, b))
 
 for name, e in zip(('1. ', '2. ', '3. '), E):
-    print(r'{0}Abstimmempfind.:  {1:.2f}'.format(name, e))
+    print(r'{0}Abstimmempfind.:  {1:.2e}'.format(name, e))
+
+### Abstand zwischen Resonator und Reflektor und Moden bestimmen
+f_0 = unp.uarray([9000, 9004, 9010], [2, 2, 3]) *10**6
+U_c = unp.uarray([220, 140, 85], [5, 5, 5])
+U_b = 300
+m_e = const.m_e
+e = const.e
+L_12 = 1 / (np.sqrt(8 * U_b * m_e/e) * ((f_0[1]) / (U_b + U_c[1]) - (f_0[0]) / (U_b + U_c[0])))
+L_23 = 1 / (np.sqrt(8 * U_b * m_e/e) * ((f_0[2]) / (U_b + U_c[2]) - (f_0[1]) / (U_b + U_c[1])))
+L = (L_12 + L_23) / 2
+
+print('')
+print(r'Abstand:  {:.4e}'.format(L))
+
+n = np.sqrt(8 * U_b * m_e/e) * L * f_0 / (U_b + U_c) - 3/4
+
+for name, param in zip(('n_1', 'n_2', 'n_3'), n):
+    print(r'{0}:  {1:.3f}'.format(name, param))
+
 
 ######################################################################################################################################################
 ### Genauere Frequenzbestimmung (Rechnung mit Werten in mm)
@@ -111,9 +128,16 @@ lam_g = ufloat(b, 0.2)
 a = ufloat(22.860, 0.046)
 c = 3 * 10**(11)
 
-f = c * unp.sqrt((1 / lam_g)**2 + (1 / (2*a))**2)
+f = ufloat(8996, 0.5) * 10**(6)
+f_lam = c * unp.sqrt((1 / lam_g)**2 + (1 / (2*a))**2)
+v_phase = f * (lam_g * 10**(-3))
+v_phase_lam = f_lam * (lam_g * 10**(-3))
 print('')
-print(r'Frequenz:  {:.4e}'.format(f))
+print(r'Frequenz:  {:.4e}'.format(f_lam))
+print(r'Phasengeschw.:  {:.3e}'.format(v_phase * 3.6))
+print(r'Phasengeschw. lam:  {:.3e}'.format(v_phase_lam * 3.6))
+print(r'Phasengeschw. in c:  {:.3f}'.format(v_phase / c*10**(3)))
+print(r'Phasengeschw. lam in c:  {:.3f}'.format(v_phase_lam / c*10**(3)))
 
 ######################################################################################################################################################
 ### Dämpfungskurve aus an SWR-Meter und in der Eichkurve vom Hersteller abgelesenen Werte in dB
@@ -182,8 +206,8 @@ print('')
 print(r'S_3dB:  {:.3f}'.format(S_3db))
 
 ### Abschwächer-Methode
-A_1 = 20
-A_2 = 42
+A_1 = ufloat(20, 1)
+A_2 = ufloat(42, 1)
 S_schwach = 10**((A_2 - A_1) / 20)
 
 print('')

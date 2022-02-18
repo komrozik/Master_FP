@@ -25,6 +25,7 @@
         b_1 &= 1,5 \;\mathrm{V}^{-1} & b_2 &= 1,9 \;\mathrm{V}^{-1} & b_3 &= 3,1 \;\mathrm{V}^{-1} \\
         c_1 &= -5,9 \cdot 10^{1} \;\mathrm{V} & c_2 &= -1,3 \cdot 10^{2} \;\mathrm{V} & c_3 &= -3,4 \cdot 10^{2} \;\mathrm{V}
     \end{align*}
+    \vspace{-15pt}
     \begin{figure}[ht]
         \centering
         \includegraphics[width = 0.85\textwidth]{plots/3moden.pdf}
@@ -33,6 +34,19 @@
         \label{fig:3moden}
     \end{figure}
     \FloatBarrier
+    Mithilfe von \autoref{eqn:moden} und den aufgenommenen Daten können der Abstand zwischen Resonator und Reflektor $L$ im Klystron bestimmt und die Moden identifiziert werden.
+    Durch Bilden der Differenz der Gleichungen zweier benachbarter Moden wird die Modenzahl eliminiert und es bleibt als einzige Unbekannte das $L$ über. Umstellen nach $L$ ergibt
+    \begin{equation*}
+        L = \left[\sqrt{8 V_B \frac{m_e}{e}} \left(\frac{f_{0,n+1}}{V_B + V_{0,n+1}} - \frac{f_{0,n}}{V_B + V_{0,n}}\right)\right]^{-1} = (2,81 \pm 0,17) \cdot 10^{-3} \; \mathrm{m} \;.
+    \end{equation*}
+    Da Messwerte zu drei Moden aufgenommen wurden kann das $L$ bestimmt werden, indem über zwei $L_i$ jeweils zweier benachbarter Moden gemittelt wird.
+
+    Nun wird das $L$ eingesetzt und die Modenzahlen der zugehörigen Peaks berechnet.
+    \begin{align*}
+        n_1 &= 4,94 \pm 0,37 \approx 5 \\
+        n_2 &= 5,97 \pm 0,42 \approx 6 \\
+        n_3 &= 6,94 \pm 0,37 \approx 7
+    \end{align*}
 
     Im Anschluss werden die elektronischen Bandbreiten nach $B = f_2' - f_1'$ und die Abstimm-Empfindlichkeiten nach $E = \frac{f_2' - f_1'}{V_2' - V_1'}$ mithilfe der aufgenommenen Messwerte bei halber Leistung bestimmt und in \autoref{tab:bandbreite} eingetragen.
     \begin{table}[h!]
@@ -77,6 +91,12 @@
     \begin{equation*}
         f_{\lambda} = (8983 \pm 20) \; \mathrm{MHz}
     \end{equation*}
+    Die Phasengeschwindigkeit $v_{\mathrm{ph,}i} = \lambda_g \cdot f_i$ ist mit den beiden bestimmten Frequenzen gegeben als:
+    \begin{align*}
+        v_{\mathrm{ph}} &= (1,58 \pm 0,01) \cdot 10^{9} \; \frac{\mathrm{km}}{\mathrm{s}} = (1,47 \pm 0,01) \; \mathrm{c} \\
+        v_{\mathrm{ph,lam}} &= (1,58 \pm 0,01) \cdot 10^{9} \; \frac{\mathrm{km}}{\mathrm{s}} = (1,46 \pm 0,01) \; \mathrm{c}
+    \end{align*}
+    Es ist zu erkennen, dass die Phasengeschwindigkeit im Hohlleiter höher ist als die Lichtgeschwindigkeit im Vakuum c.
 
 \subsection{Bestimmung der Dämpfungskurve}
     Die vom Hersteller gegebene Eichkurve auf dem Dämpfungsglied soll mithilfe des SWR-Meters überprüft werden. Dazu wird der Abschluss aus der vorherigen Messung durch einen Kurzschluss ersetzt. So bilden sich keine stehenden Wellen aus. Unter diesen Bedingungen gibt die Eichkurve das Verhältnis in dB zwischen der Leistung, wenn das Dämpfungsglied ausgeschaltet wäre und der Leistung bei eingeschaltetem Dämfpungsglied.
@@ -150,14 +170,15 @@
         Diese Methode eignet sich wie die 3 dB-Methode, um größere SWR zu berechnen, da hier das Dämpfungsglied kontinuirlich so verändert wird, dass der Ausschlag des SWR-Meters auf der Skala bleibt.
         $A_1$ ist die anfangs eingestellte Dämpfung, wobei die Sonde in einem Maximum liegt und $A_2$ ist die eingestellte Dämpfung, sodass der Ausschlag des SWR-Meters bei der Sonde im nächstgelegenen Minimum dem Ausschlag beim Maximum gleicht.
         Die Werte wurden bei einer Sondentiefe von \SI{9}{mm} gemessen.
+        Die Unsicherheit von \SI{1}{dB} ergibt sich durch das Ablesen an der Eichkurve des Dämpfungsgliedes.
         \begin{align*}
             \begin{aligned}
-                A_1 &= 20 \; \mathrm{dB} \\
-                A_2 &= 42 \; \mathrm{dB}
+                A_1 &= (20 \pm 1) \; \mathrm{dB} \\
+                A_2 &= (42 \pm 1) \; \mathrm{dB}
             \end{aligned}
             && \Rightarrow && 
             \begin{aligned}
-                S_{\mathrm{schw}} &= 10^{\frac{A_2 - A_1}{20}} = 12,59
+                S_{\mathrm{schw}} &= 10^{\frac{A_2 - A_1}{20}} = 12,59 \pm 2,05
             \end{aligned}
         \end{align*}
     
