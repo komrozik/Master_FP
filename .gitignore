@@ -1,5 +1,6 @@
 .DS_Store
 build/
+plots/
 .vscode/
 .ipynb_checkpoints/
 .log
