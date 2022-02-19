@@ -18,10 +18,10 @@
             \caption{Der Aufbau eines Reflexklystrons.}
             \label{fig:reflexklystron}
         \end{figure}
-        Das Klystron besteht aus einer Heiz-Kathode die Elektronen emittiert, von der Heiz-Kathode aus werden die Elektronen mit einer Anode in Richtung eines Gitters beschleunigt.
-        Das Gitter ist eine Teil eines Torus-Hohlraumresonators für hohe Frequenzen in dem eine Geschwindigkeitsmodulation der Elektronen stattfindet, wenn diese durch die Gitterwände laufen.
-        Elektronen, die früh in den Hohlraumresonator gelangen werden weiter beschleunigt, wohingegen Elektronen, die spät in den Resonator gelangen verlangsamt werden. Nach dem Resonator treffen alle Elektronen auf einen Reflektor und passieren erneut den Resonator.
-        Mit richtiger Einstellung der Reflektorspannung ist es möglich, dass dabei alle Elektronen gleichzeitig den Resonator erreichen.
+        Das Klystron besteht aus einer Heizanode die Elektronen emittiert, von der Heizanode aus werden die Elektronen bei einer angelegten Beschleunigungsspannung $V_B$ in Richtung des ersten Gitters beschleunigt.
+        Das Gitter ist eine Teil eines Torus-Hohlraumresonators für hohe Frequenzen in dem eine Geschwindigkeitsmodulation der Elektronen stattfindet wenn diese durch die Gitterwände laufen.
+        Elektronen die früh in den Hohlraumresonator gelangen werden durch eine weitere Gitter-Elektrode weiter beschleunigt, wohingegen Elektronen die spät in den Resonator gelangen verlangsamt werden. Nach dem Resonator treffen alle Elektronen auf einen Reflektor und passieren erneut den Resonator.
+        Mit richtiger Einstellung der Reflektorspannung $V_C$ ist es möglich dass dabei alle Elektronen gleichzeitig den Resonator erreichen.
         Beim Durchlaufen des Resonators werden die Elektronen nun abgebremst und geben ihre Energie an den Schwingkreis ab. Die maximale Abbremsung findet immer bei $(n + \frac{3}{4})$ der Periodendauer des Resonators statt.
         Wird die Reflektorspannung nun durchlaufen, ergibt sich der Zusammenhang von Frequenz und Output, wie er in Abbildung \ref{fig:frequenzmodulation} zu sehen ist.
         \begin{figure}
@@ -30,6 +30,43 @@
             \caption{Frequenzmodulation}
             \label{fig:frequenzmodulation}
         \end{figure}
+        Um die Moden am Reflexklystron aus seinen Kenngrößen und den Frequenzen der Moden zu bestimmen wird im Folgenden eine kurze Herleitung gegeben.\\
+        Für die Beschleunigung des Elektrons zwischen dem  zweiten Gitter und dem Reflektor gilt unter dem Einfluss eines verzörgernden Feldes $E = \frac{V_B + V_C}{L}$.
+        Die Beschleunigung des Elektrons in diesem Raum ist gegeben als
+        \begin{equation*}
+            a = -\frac{e E}{m_e} = - \frac{e}{m_e} \frac{V_B + V_C}{L} \;.
+        \end{equation*}
+        Zweifaches Integrieren dieser Formel führt zu
+        \begin{align}
+            v &= (v_0 + \Delta v) - \frac{e}{m_e} \frac{V_B + V_C}{L} (t - t_0) \\[3pt]
+            z &= (v_0 + \Delta v) (t - t_0) - \frac{1}{2} \frac{e}{m_e} \frac{V_B + V_C}{L} (t - t_0)^2 \;.
+            \label{eqn:zPos}
+        \end{align}
+        $v_0$ ist dabei die Geschwindigkeit der Elektronen, wenn sie am ersten Gitter ankommen.
+        $\Delta v$ ist die zusätzliche Geschwindigkeit, die die Elektronen nach Durchlaufen der oszillierenden Spannung $\Delta V \propto \sin(\omega t)$ zwischen den beiden Gittern passieren.
+        Die Position des zweiten Gitters wird als $z = 0$ definiert und somit wird die \autoref{eqn:zPos} nach der Zeit umgestellt, die es dauert bis des Elektron nach anfänglichem Passieren des zweiten Gitters wieder an diesem ankommt.
+        Da die Geschwindigkeiten der meisten Elektronen um $\Delta v = 0$ verteilt sind wird dies auch in \autoref{eqn:zPos} eingesetzt.
+        Dies wird erreicht wenn 
+        Es ergibt sich schließlich außer der trivialen die folgende Lösung:
+        \begin{equation*}
+            t - t_0 = 2 v_0 \frac{m_e}{e} \frac{L}{V_B + V_C}
+        \end{equation*}
+        Da die Elektronen die höchst mögliche Energie an die Oszillation im Hohlraum abgeben sollen, müssen sie ankommen, wenn das abbremsende Feld am größten ist.
+        Dies wird erreicht bei $t - t_0 = T (n + \frac{3}{4})$ mit $n \in \mathbb{Z}$, wobei $T$ die Periode der oszillierenden Spannung ist.
+        \begin{equation*}
+            T \left(n + \frac{3}{4} \right) = 2 v_0 \frac{m_e}{e} \frac{L}{V_B + V_C}
+        \end{equation*}
+        Wird die Beziehung $f = \frac{1}{T}$ benutzt und $v_0$ durch
+        \begin{equation*}
+            \frac{1}{2} m_e v_0^2 = e V_B \quad \Leftrightarrow \quad v_0 = \sqrt{2 V_B \frac{e}{m_e}}
+        \end{equation*}
+        ausgedrückt, so ergibt sich letzlich die folgende Formel für die Modenzahlen $n$:
+        \begin{equation}
+            \label{eqn:moden}
+            n = \sqrt{8 V_B \frac{m_e}{e}} \frac{f L}{V_B + V_C} - \frac{3}{4}
+        \end{equation}
+
+    \newpage
     \subsection{Mikrowellen in einem Hohlleiter}
     \label{sec:Hohlleiter}
         In diesem Versuch werden die erzeugten Mikrowellen innerhalb eines Hohlleiters transmittiert.
